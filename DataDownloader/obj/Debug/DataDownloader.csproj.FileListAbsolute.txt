@@ -1,0 +1,17 @@
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\obj\Debug\DataDownloader.csprojResolveAssemblyReference.cache
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\DataDownloader.dll.config
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\DataDownloader.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\DataDownloader.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\DataModel.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\EntityFramework.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Newtonsoft.Json.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\DataModel.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\EntityFramework.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Newtonsoft.Json.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\obj\Debug\DataDownloader.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\obj\Debug\DataDownloader.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\CsvHelper.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\CsvHelper.xml

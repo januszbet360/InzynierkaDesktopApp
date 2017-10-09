@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FootballDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HomeId" Type="int" Nullable="false" />
+          <Property Name="AwayId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="PredictedScoreId" Type="int" />
+          <Property Name="RealScoreId" Type="int" />
+          <Property Name="Referee" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nchar" MaxLength="200" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Players4Match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="MatchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PredictedScores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HomeGoals" Type="int" Nullable="false" />
+          <Property Name="AwayGoals" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RealScores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HomeGoals" Type="int" />
+          <Property Name="AwayGoals" Type="int" />
+          <Property Name="HomeShots" Type="int" />
+          <Property Name="AwayShots" Type="int" />
+          <Property Name="HomeShotsOnTarget" Type="int" />
+          <Property Name="AwayShotsOnTarget" Type="int" />
+          <Property Name="HomeCorners" Type="int" />
+          <Property Name="AwayCorners" Type="int" />
+          <Property Name="HomeOffsides" Type="int" />
+          <Property Name="AwayOffsides" Type="int" />
+          <Property Name="HomeFouls" Type="int" />
+          <Property Name="AwayFouls" Type="int" />
+          <Property Name="HomeYellowCards" Type="int" />
+          <Property Name="AwayYellowCards" Type="int" />
+          <Property Name="HomeRedCards" Type="int" />
+          <Property Name="AwayRedCards" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Matches_PredictedScores">
+          <End Role="PredictedScores" Type="Self.PredictedScores" Multiplicity="0..1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PredictedScores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="PredictedScoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_RealScores">
+          <End Role="RealScores" Type="Self.RealScores" Multiplicity="0..1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RealScores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="RealScoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_TeamsAway">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="AwayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_TeamsHome">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="HomeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players4Match_Matches">
+          <End Role="Matches" Type="Self.Matches" Multiplicity="1" />
+          <End Role="Players4Match" Type="Self.Players4Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matches">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players4Match">
+              <PropertyRef Name="MatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players4Match_Players">
+          <End Role="Players" Type="Self.Players" Multiplicity="1" />
+          <End Role="Players4Match" Type="Self.Players4Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players4Match">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FootballDataModelStoreContainer">
+          <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players4Match" EntityType="Self.Players4Match" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PredictedScores" EntityType="Self.PredictedScores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RealScores" EntityType="Self.RealScores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Matches_PredictedScores" Association="Self.FK_Matches_PredictedScores">
+            <End Role="PredictedScores" EntitySet="PredictedScores" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_RealScores" Association="Self.FK_Matches_RealScores">
+            <End Role="RealScores" EntitySet="RealScores" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_TeamsAway" Association="Self.FK_Matches_TeamsAway">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_TeamsHome" Association="Self.FK_Matches_TeamsHome">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players4Match_Matches" Association="Self.FK_Players4Match_Matches">
+            <End Role="Matches" EntitySet="Matches" />
+            <End Role="Players4Match" EntitySet="Players4Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players4Match_Players" Association="Self.FK_Players4Match_Players">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Players4Match" EntitySet="Players4Match" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FootballDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HomeId" Type="Int32" Nullable="false" />
+          <Property Name="AwayId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="PredictedScoreId" Type="Int32" />
+          <Property Name="RealScoreId" Type="Int32" />
+          <Property Name="Referee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PredictedScore" Relationship="Self.FK_Matches_PredictedScores" FromRole="Matches" ToRole="PredictedScores" />
+          <NavigationProperty Name="RealScore" Relationship="Self.FK_Matches_RealScores" FromRole="Matches" ToRole="RealScores" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Matches_TeamsAway" FromRole="Matches" ToRole="Teams" />
+          <NavigationProperty Name="Team1" Relationship="Self.FK_Matches_TeamsHome" FromRole="Matches" ToRole="Teams" />
+          <NavigationProperty Name="Players4Match" Relationship="Self.FK_Players4Match_Matches" FromRole="Matches" ToRole="Players4Match" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Players4Match" Relationship="Self.FK_Players4Match_Players" FromRole="Players" ToRole="Players4Match" />
+        </EntityType>
+        <EntityType Name="Players4Match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="MatchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Match" Relationship="Self.FK_Players4Match_Matches" FromRole="Players4Match" ToRole="Matches" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Players4Match_Players" FromRole="Players4Match" ToRole="Players" />
+        </EntityType>
+        <EntityType Name="PredictedScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HomeGoals" Type="Int32" Nullable="false" />
+          <Property Name="AwayGoals" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_PredictedScores" FromRole="PredictedScores" ToRole="Matches" />
+        </EntityType>
+        <EntityType Name="RealScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HomeGoals" Type="Int32" />
+          <Property Name="AwayGoals" Type="Int32" />
+          <Property Name="HomeShots" Type="Int32" />
+          <Property Name="AwayShots" Type="Int32" />
+          <Property Name="HomeShotsOnTarget" Type="Int32" />
+          <Property Name="AwayShotsOnTarget" Type="Int32" />
+          <Property Name="HomeCorners" Type="Int32" />
+          <Property Name="AwayCorners" Type="Int32" />
+          <Property Name="HomeOffsides" Type="Int32" />
+          <Property Name="AwayOffsides" Type="Int32" />
+          <Property Name="HomeFouls" Type="Int32" />
+          <Property Name="AwayFouls" Type="Int32" />
+          <Property Name="HomeYellowCards" Type="Int32" />
+          <Property Name="AwayYellowCards" Type="Int32" />
+          <Property Name="HomeRedCards" Type="Int32" />
+          <Property Name="AwayRedCards" Type="Int32" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_RealScores" FromRole="RealScores" ToRole="Matches" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_TeamsAway" FromRole="Teams" ToRole="Matches" />
+          <NavigationProperty Name="Matches1" Relationship="Self.FK_Matches_TeamsHome" FromRole="Teams" ToRole="Matches" />
+        </EntityType>
+        <Association Name="FK_Matches_PredictedScores">
+          <End Role="PredictedScores" Type="Self.PredictedScore" Multiplicity="0..1" />
+          <End Role="Matches" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PredictedScores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="PredictedScoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_RealScores">
+          <End Role="RealScores" Type="Self.RealScore" Multiplicity="0..1" />
+          <End Role="Matches" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RealScores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="RealScoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_TeamsAway">
+          <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="AwayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_TeamsHome">
+          <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="HomeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players4Match_Matches">
+          <End Role="Matches" Type="Self.Match" Multiplicity="1" />
+          <End Role="Players4Match" Type="Self.Players4Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matches">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players4Match">
+              <PropertyRef Name="MatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Players4Match_Players">
+          <End Role="Players" Type="Self.Player" Multiplicity="1" />
+          <End Role="Players4Match" Type="Self.Players4Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players4Match">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FootballEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Matches" EntityType="Self.Match" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Players4Match" EntityType="Self.Players4Match" />
+          <EntitySet Name="PredictedScores" EntityType="Self.PredictedScore" />
+          <EntitySet Name="RealScores" EntityType="Self.RealScore" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <AssociationSet Name="FK_Matches_PredictedScores" Association="Self.FK_Matches_PredictedScores">
+            <End Role="PredictedScores" EntitySet="PredictedScores" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_RealScores" Association="Self.FK_Matches_RealScores">
+            <End Role="RealScores" EntitySet="RealScores" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_TeamsAway" Association="Self.FK_Matches_TeamsAway">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_TeamsHome" Association="Self.FK_Matches_TeamsHome">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players4Match_Matches" Association="Self.FK_Players4Match_Matches">
+            <End Role="Matches" EntitySet="Matches" />
+            <End Role="Players4Match" EntitySet="Players4Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Players4Match_Players" Association="Self.FK_Players4Match_Players">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Players4Match" EntitySet="Players4Match" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FootballDataModelStoreContainer" CdmEntityContainer="FootballEntities">
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="FootballDataModel.Match">
+              <MappingFragment StoreEntitySet="Matches">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HomeId" ColumnName="HomeId" />
+                <ScalarProperty Name="AwayId" ColumnName="AwayId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PredictedScoreId" ColumnName="PredictedScoreId" />
+                <ScalarProperty Name="RealScoreId" ColumnName="RealScoreId" />
+                <ScalarProperty Name="Referee" ColumnName="Referee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="FootballDataModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players4Match">
+            <EntityTypeMapping TypeName="FootballDataModel.Players4Match">
+              <MappingFragment StoreEntitySet="Players4Match">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="MatchId" ColumnName="MatchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PredictedScores">
+            <EntityTypeMapping TypeName="FootballDataModel.PredictedScore">
+              <MappingFragment StoreEntitySet="PredictedScores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HomeGoals" ColumnName="HomeGoals" />
+                <ScalarProperty Name="AwayGoals" ColumnName="AwayGoals" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RealScores">
+            <EntityTypeMapping TypeName="FootballDataModel.RealScore">
+              <MappingFragment StoreEntitySet="RealScores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HomeGoals" ColumnName="HomeGoals" />
+                <ScalarProperty Name="AwayGoals" ColumnName="AwayGoals" />
+                <ScalarProperty Name="HomeShots" ColumnName="HomeShots" />
+                <ScalarProperty Name="AwayShots" ColumnName="AwayShots" />
+                <ScalarProperty Name="HomeShotsOnTarget" ColumnName="HomeShotsOnTarget" />
+                <ScalarProperty Name="AwayShotsOnTarget" ColumnName="AwayShotsOnTarget" />
+                <ScalarProperty Name="HomeCorners" ColumnName="HomeCorners" />
+                <ScalarProperty Name="AwayCorners" ColumnName="AwayCorners" />
+                <ScalarProperty Name="HomeOffsides" ColumnName="HomeOffsides" />
+                <ScalarProperty Name="AwayOffsides" ColumnName="AwayOffsides" />
+                <ScalarProperty Name="HomeFouls" ColumnName="HomeFouls" />
+                <ScalarProperty Name="AwayFouls" ColumnName="AwayFouls" />
+                <ScalarProperty Name="HomeYellowCards" ColumnName="HomeYellowCards" />
+                <ScalarProperty Name="AwayYellowCards" ColumnName="AwayYellowCards" />
+                <ScalarProperty Name="HomeRedCards" ColumnName="HomeRedCards" />
+                <ScalarProperty Name="AwayRedCards" ColumnName="AwayRedCards" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FootballDataModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="FootballDataModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

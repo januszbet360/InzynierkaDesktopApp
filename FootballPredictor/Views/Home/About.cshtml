@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>System predykcji wyników meczów piłkarskich</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header class="jumbotron">
+        <h3>System predykcji wyników meczów piłkarskich</h3>
+    </header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="@Url.Action("Index")">Nazwa strony</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index")">Strona główna</a></li>
+                <li class="active"><a href="@Url.Action("About")">O autorach</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <td>Imię i nazwisko</td>
+                    <td>Nr indeksu</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dariusz Asztemborski</td>
+                    <td>155021</td>
+                </tr>
+                <tr>
+                    <td>Jan Dąbrowski</td>
+                    <td>155055</td>
+                </tr>
+                <tr>
+                    <td>Mikołaj Szotowicz</td>
+                    <td>155208</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

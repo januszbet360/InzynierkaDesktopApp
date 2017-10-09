@@ -1,0 +1,16 @@
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.csprojResolveAssemblyReference.cache
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\FootballPredictor.Tests.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\FootballPredictor.Tests.pdb
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\DataDownloader.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\DataModel.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Newtonsoft.Json.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\EntityFramework.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\DataDownloader.pdb
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\DataModel.pdb
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Newtonsoft.Json.xml
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\EntityFramework.xml
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.pdb
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\CsvHelper.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\CsvHelper.xml

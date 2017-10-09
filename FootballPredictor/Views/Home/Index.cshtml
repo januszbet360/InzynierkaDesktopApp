@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FootballPredictor.Models.MainPageModel>
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>System predykcji wyników meczów piłkarskich</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header class="jumbotron">
+        <h3>System predykcji wyników meczów piłkarskich</h3>
+    </header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="@Url.Action("Index")">Nazwa strony</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="@Url.Action("Index")">Strona główna</a></li>
+                <li><a href="@Url.Action("About")">O autorach</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <td>Gospodarze</td>
+                    <td>Goście</td>
+                    <td>Wynik</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in Model)
+                {
+                    <tr><td>@row.HomeTeam</td><td>@row.AwayTeam</td><td>@row.Score.HomeGoals : @row.Score.AwayGoals</td></tr>
+                }
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
