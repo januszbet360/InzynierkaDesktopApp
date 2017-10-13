@@ -14,7 +14,6 @@ namespace DataDownloader
     {
         string dir = AppDomain.CurrentDomain.BaseDirectory;
 
-
         public List<RealScoreModel> ParseCsvScores(DateTime startDate)
         {
             var scores = new List<RealScoreModel>();

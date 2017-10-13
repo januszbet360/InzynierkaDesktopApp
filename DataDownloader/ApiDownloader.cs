@@ -36,17 +36,32 @@ namespace DataDownloader
         }
 
         // CSV with scores from football-data.co.uk
-        public void GetScoresCsv()
+        public string GetScoresCsv()
         {
             using (var client = new WebClient())
             {
-                var path = new StringBuilder();
                 string dir = AppDomain.CurrentDomain.BaseDirectory;
+                string path = dir + Constants.CSV_FILE_NAME;
 
                 client.DownloadFile(@"http://www.football-data.co.uk/mmz4281/1718/E0.csv",
-                    dir + Constants.CSV_FILE_NAME);
+                    path);
+
+                return path;
             }
         }
+
+        public string GetAllFixturesJson()
+        {
+            var resp = ApiHost.Instance.Host
+                .GetAsync(String.Format("/v1/competitions/{0}/fixtures?timeFrame=n365", Constants.LEAGUE_ID)).Result;
+
+            if (resp.IsSuccessStatusCode)
+            {
+                return resp.Content.ReadAsStringAsync().Result;
+            }
+            return null;
+        }
+
 
     }
 }

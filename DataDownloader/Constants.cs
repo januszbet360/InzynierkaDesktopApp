@@ -14,6 +14,7 @@ namespace DataDownloader
         public const string API_TOKEN = "eddb86ccce2b4e579a2817e0a65544d4";
 
         public const string CSV_FILE_NAME = "scores.csv";
+        public const string TEAMS_INFO_FILE_NAME = "teams.txt";
     }
 
 
