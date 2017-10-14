@@ -9,23 +9,26 @@ namespace DataModel.Models
     public class MatchModel
     {
         public int Id { get; set; }
-        public int HomeId { get; set; }
-        public int AwayId { get; set; }
         public DateTime Date { get; set; }
-        public Nullable<int> RealScoreId { get; set; }
-        public string Referee { get; set; }
+        public int? HomeGoalsPredicted { get; set; }
+        public int? AwayGoalsPredicted { get; set; }
+        public string Season { get; set; }
+        public int Matchweek { get; set; }
 
-        public TeamModel HomeTeam { get; set; }
-        public TeamModel AwayTeam { get; set; }
+        public string HomeTeam { get; set; }
+        public string AwayTeam { get; set; }
 
         public Match ToDbObject()
         {
             var m = new Match();
-            m.Date = this.Date;
+
+            m.Matchweek = Matchweek;
+            m.Season = Season;
+            m.Date = Date;
             using (var ctx = new FootballEntities())
             {
-                m.HomeId = ctx.Teams.First(t => t.Name == HomeTeam.Name).Id;
-                m.AwayId = ctx.Teams.First(t => t.Name == AwayTeam.Name).Id;
+                m.HomeId = ctx.Teams.First(t => t.FullName == HomeTeam).Id;
+                m.AwayId = ctx.Teams.First(t => t.FullName == AwayTeam).Id;
             }
             return m;
         }

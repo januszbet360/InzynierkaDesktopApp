@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="FootballDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="FootballScoresDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FullStatistics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MatchesPlayed" Type="int" Nullable="false" />
+    <Property Name="Points" Type="int" Nullable="false" />
+    <Property Name="MatchesWon" Type="int" Nullable="false" />
+    <Property Name="MatchesDrawn" Type="int" Nullable="false" />
+    <Property Name="MatchesLost" Type="int" Nullable="false" />
+    <Property Name="GoalsScored" Type="int" Nullable="false" />
+    <Property Name="GoalsLost" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Matches">
     <Key>
       <PropertyRef Name="Id" />
@@ -7,57 +22,36 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HomeId" Type="int" Nullable="false" />
     <Property Name="AwayId" Type="int" Nullable="false" />
-    <Property Name="Date" Type="date" />
-    <Property Name="PredictedScoreId" Type="int" />
-    <Property Name="RealScoreId" Type="int" />
-    <Property Name="Referee" Type="nvarchar" MaxLength="100" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="HomeGoalsPredicted" Type="int" />
+    <Property Name="AwayGoalsPredicted" Type="int" />
+    <Property Name="Season" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Matchweek" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Players">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
-    <Property Name="Country" Type="nchar" MaxLength="200" />
-    <Property Name="BirthDate" Type="date" />
-  </EntityType>
-  <EntityType Name="Players4Match">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="PlayerId" Type="int" Nullable="false" />
-    <Property Name="MatchId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PredictedScores">
+  <EntityType Name="Scores">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HomeGoals" Type="int" Nullable="false" />
     <Property Name="AwayGoals" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="RealScores">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HomeGoals" Type="int" />
-    <Property Name="AwayGoals" Type="int" />
-    <Property Name="HomeShots" Type="int" />
-    <Property Name="AwayShots" Type="int" />
-    <Property Name="HomeShotsOnTarget" Type="int" />
-    <Property Name="AwayShotsOnTarget" Type="int" />
-    <Property Name="HomeCorners" Type="int" />
-    <Property Name="AwayCorners" Type="int" />
-    <Property Name="HomeOffsides" Type="int" />
-    <Property Name="AwayOffsides" Type="int" />
-    <Property Name="HomeFouls" Type="int" />
-    <Property Name="AwayFouls" Type="int" />
-    <Property Name="HomeYellowCards" Type="int" />
-    <Property Name="AwayYellowCards" Type="int" />
-    <Property Name="HomeRedCards" Type="int" />
-    <Property Name="AwayRedCards" Type="int" />
+    <Property Name="HomeShots" Type="int" Nullable="false" />
+    <Property Name="AwayShots" Type="int" Nullable="false" />
+    <Property Name="HomeShotsOnTarget" Type="int" Nullable="false" />
+    <Property Name="AwayShotsOnTarget" Type="int" Nullable="false" />
+    <Property Name="HomeCorners" Type="int" Nullable="false" />
+    <Property Name="AwayCorners" Type="int" Nullable="false" />
+    <Property Name="HomeFouls" Type="int" Nullable="false" />
+    <Property Name="AwayFouls" Type="int" Nullable="false" />
+    <Property Name="HomeYellowCards" Type="int" Nullable="false" />
+    <Property Name="AwayYellowCards" Type="int" Nullable="false" />
+    <Property Name="HomeRedCards" Type="int" Nullable="false" />
+    <Property Name="AwayRedCards" Type="int" Nullable="false" />
+    <Property Name="HalfTimeHomeGoals" Type="int" Nullable="false" />
+    <Property Name="HalfTimeAwayGoals" Type="int" Nullable="false" />
+    <Property Name="Referee" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="MatchId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -74,33 +68,23 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ImageURL" Type="nvarchar" MaxLength="300" />
   </EntityType>
-  <Association Name="FK_Matches_PredictedScores">
-    <End Role="PredictedScores" Type="Self.PredictedScores" Multiplicity="0..1" />
-    <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+  <Association Name="FK__FullStati__TeamI__46E78A0C">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="FullStatistics" Type="Self.FullStatistics" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PredictedScores">
+      <Principal Role="Teams">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Matches">
-        <PropertyRef Name="PredictedScoreId" />
+      <Dependent Role="FullStatistics">
+        <PropertyRef Name="TeamId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Matches_RealScores">
-    <End Role="RealScores" Type="Self.RealScores" Multiplicity="0..1" />
-    <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RealScores">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Matches">
-        <PropertyRef Name="RealScoreId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Matches_TeamsAway">
+  <Association Name="FK__Matches__AwayId__412EB0B6">
     <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
     <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
     <ReferentialConstraint>
@@ -112,7 +96,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Matches_TeamsHome">
+  <Association Name="FK__Matches__HomeId__403A8C7D">
     <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
     <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
     <ReferentialConstraint>
@@ -124,61 +108,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Players4Match_Matches">
+  <Association Name="FK__Scores__MatchId__440B1D61">
     <End Role="Matches" Type="Self.Matches" Multiplicity="1" />
-    <End Role="Players4Match" Type="Self.Players4Match" Multiplicity="*" />
+    <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Matches">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Players4Match">
+      <Dependent Role="Scores">
         <PropertyRef Name="MatchId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Players4Match_Players">
-    <End Role="Players" Type="Self.Players" Multiplicity="1" />
-    <End Role="Players4Match" Type="Self.Players4Match" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Players">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Players4Match">
-        <PropertyRef Name="PlayerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="FootballDataModelStoreContainer">
+  <EntityContainer Name="FootballScoresDBModelStoreContainer">
+    <EntitySet Name="FullStatistics" EntityType="Self.FullStatistics" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Players4Match" EntityType="Self.Players4Match" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PredictedScores" EntityType="Self.PredictedScores" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="RealScores" EntityType="Self.RealScores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Scores" EntityType="Self.Scores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Matches_PredictedScores" Association="Self.FK_Matches_PredictedScores">
-      <End Role="PredictedScores" EntitySet="PredictedScores" />
-      <End Role="Matches" EntitySet="Matches" />
+    <AssociationSet Name="FK__FullStati__TeamI__46E78A0C" Association="Self.FK__FullStati__TeamI__46E78A0C">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="FullStatistics" EntitySet="FullStatistics" />
     </AssociationSet>
-    <AssociationSet Name="FK_Matches_RealScores" Association="Self.FK_Matches_RealScores">
-      <End Role="RealScores" EntitySet="RealScores" />
-      <End Role="Matches" EntitySet="Matches" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Matches_TeamsAway" Association="Self.FK_Matches_TeamsAway">
+    <AssociationSet Name="FK__Matches__AwayId__412EB0B6" Association="Self.FK__Matches__AwayId__412EB0B6">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="Matches" EntitySet="Matches" />
     </AssociationSet>
-    <AssociationSet Name="FK_Matches_TeamsHome" Association="Self.FK_Matches_TeamsHome">
+    <AssociationSet Name="FK__Matches__HomeId__403A8C7D" Association="Self.FK__Matches__HomeId__403A8C7D">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="Matches" EntitySet="Matches" />
     </AssociationSet>
-    <AssociationSet Name="FK_Players4Match_Matches" Association="Self.FK_Players4Match_Matches">
+    <AssociationSet Name="FK__Scores__MatchId__440B1D61" Association="Self.FK__Scores__MatchId__440B1D61">
       <End Role="Matches" EntitySet="Matches" />
-      <End Role="Players4Match" EntitySet="Players4Match" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Players4Match_Players" Association="Self.FK_Players4Match_Players">
-      <End Role="Players" EntitySet="Players" />
-      <End Role="Players4Match" EntitySet="Players4Match" />
+      <End Role="Scores" EntitySet="Scores" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -28,8 +28,10 @@ namespace DataDownloader
                 {
                     var match = new MatchModel();
                     match.Date = (DateTime)m["date"];
-                    match.HomeTeam = new TeamModel((String)m["homeTeamName"]);
-                    match.AwayTeam = new TeamModel((String)m["awayTeamName"]);
+                    match.HomeTeam = (String)m["homeTeamName"];
+                    match.AwayTeam = (String)m["awayTeamName"];
+                    match.Season = SeasonHelper.GetCurrentSeason(match.Date);
+                    match.Matchweek = (int)m["matchday"];
                     matches.Add(match);
                 }
             }
@@ -49,8 +51,10 @@ namespace DataDownloader
                 {
                     var match = new MatchModel();
                     match.Date = (DateTime)m["date"];
-                    match.HomeTeam = new TeamModel((String)m["homeTeamName"]);
-                    match.AwayTeam = new TeamModel((String)m["awayTeamName"]);
+                    match.HomeTeam = (String)m["homeTeamName"];
+                    match.AwayTeam = (String)m["awayTeamName"];
+                    match.Season = SeasonHelper.GetCurrentSeason(match.Date);
+                    match.Matchweek = (int)m["matchday"];
                     matches.Add(match);
                 }
             }
@@ -70,6 +74,10 @@ namespace DataDownloader
                     {
                         foreach (var m in matches)
                         {
+                            var matchDb = m.ToDbObject();
+                            matchDb.HomeId = ctx.Teams.First(t => t.Name == m.HomeTeam).Id;
+                            matchDb.AwayId = ctx.Teams.First(t => t.Name == m.AwayTeam).Id;
+
                             ctx.Matches.Add(m.ToDbObject());
                             counter++;
                         }
@@ -114,5 +122,6 @@ namespace DataDownloader
             }
             return counter;
         }
+        
     }
 }

@@ -25,11 +25,9 @@ namespace DataModel
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<FullStatistic> FullStatistics { get; set; }
         public virtual DbSet<Match> Matches { get; set; }
-        public virtual DbSet<Player> Players { get; set; }
-        public virtual DbSet<Players4Match> Players4Match { get; set; }
-        public virtual DbSet<PredictedScore> PredictedScores { get; set; }
-        public virtual DbSet<RealScore> RealScores { get; set; }
+        public virtual DbSet<Score> Scores { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
     }

@@ -13,3 +13,6 @@ E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\obj\Debug\Fo
 E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.pdb
 E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\CsvHelper.dll
 E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\CsvHelper.xml
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\FootballPredictor.Tests.dll.config
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\EntityFramework.SqlServer.xml

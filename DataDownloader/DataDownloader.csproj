@@ -67,6 +67,7 @@
     <Compile Include="MatchdayService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CsvScoreService.cs" />
+    <Compile Include="SeasonHelper.cs" />
     <Compile Include="TeamDataService.cs" />
   </ItemGroup>
   <ItemGroup>

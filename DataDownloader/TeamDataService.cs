@@ -11,20 +11,20 @@ namespace DataDownloader
 {
     public class TeamDataService
     {
-        public List<TeamModel> GetTeamsFromFile()
+        public List<Team> GetTeamsFromFile()
         {
-            var teams = new List<TeamModel>();
+            var teams = new List<Team>();
             string dir = AppDomain.CurrentDomain.BaseDirectory;
 
             var lines = File.ReadLines(dir + '\\' + Constants.TEAMS_INFO_FILE_NAME);
-            
+
             foreach (var line in lines)
             {
                 var info = line.Split(',');
-                var team = new TeamModel();
+                var team = new Team();
                 team.Name = info[0];
                 team.FullName = info[1];
-                team.ImageUrl = info[2];
+                team.ImageURL = info[2];
                 teams.Add(team);
             }
 
@@ -37,27 +37,34 @@ namespace DataDownloader
 
             using (var ctx = new FootballEntities())
             {
-                using (var transaction = ctx.Database.BeginTransaction())
+                if (ctx.Teams.Count() == 0)
                 {
-                    try
+                    using (var transaction = ctx.Database.BeginTransaction())
                     {
-                        if (teams.Count > 0)
+                        try
                         {
-                            foreach (var t in teams)
+                            if (teams.Count > 0)
                             {
-                                ctx.Teams.Add(t.ToDbObject());
+                                foreach (var t in teams)
+                                {
+                                    if (t.Name == "Lincoln")
+                                    {
+                                        t.Name = "Lincoln";
+                                    }
+                                    ctx.Teams.Add(t);
+                                }
+                                ctx.SaveChanges();
+                                transaction.Commit();
                             }
-                            ctx.SaveChanges();
-                            transaction.Commit();
+                            else
+                            {
+                                transaction.Rollback();
+                            }
                         }
-                        else
+                        catch (Exception)
                         {
                             transaction.Rollback();
                         }
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
                     }
                 }
             }

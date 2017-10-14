@@ -3,6 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataDownloader;
+using DataModel;
+using System.Linq;
+using DataModel.Models;
 
 namespace FootballPredictor.Tests
 {
@@ -35,6 +38,18 @@ namespace FootballPredictor.Tests
 
             Assert.AreEqual(team.Name, "Lincoln");
             Assert.AreEqual(team.FullName, "Lincoln City");
+        }
+
+        [TestMethod]
+        public void InsertTeams()
+        {
+            _ds.InsertTeams();
+            using (var ctx = new FootballEntities())
+            {
+                Assert.AreEqual(ctx.Teams.Count(), 20 + 24 + 24 + 24);
+                Assert.AreEqual(ctx.Teams.First().FullName, "Arsenal FC");
+                Assert.AreEqual(ctx.Teams.First().Name, "Arsenal");
+            }
         }
 
     }

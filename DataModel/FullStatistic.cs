@@ -12,19 +12,19 @@ namespace DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class PredictedScore
+    public partial class FullStatistic
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PredictedScore()
-        {
-            this.Matches = new HashSet<Match>();
-        }
-    
         public int Id { get; set; }
-        public int HomeGoals { get; set; }
-        public int AwayGoals { get; set; }
+        public int TeamId { get; set; }
+        public string Season { get; set; }
+        public int MatchesPlayed { get; set; }
+        public int Points { get; set; }
+        public int MatchesWon { get; set; }
+        public int MatchesDrawn { get; set; }
+        public int MatchesLost { get; set; }
+        public int GoalsScored { get; set; }
+        public int GoalsLost { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Match> Matches { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

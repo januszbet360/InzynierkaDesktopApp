@@ -1,50 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FootballDataModelStoreContainer" CdmEntityContainer="FootballEntities">
+  <EntityContainerMapping StorageEntityContainer="FootballScoresDBModelStoreContainer" CdmEntityContainer="FootballEntities">
+    <EntitySetMapping Name="FullStatistics">
+      <EntityTypeMapping TypeName="FootballScoresDBModel.FullStatistic">
+        <MappingFragment StoreEntitySet="FullStatistics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="MatchesPlayed" ColumnName="MatchesPlayed" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="MatchesWon" ColumnName="MatchesWon" />
+          <ScalarProperty Name="MatchesDrawn" ColumnName="MatchesDrawn" />
+          <ScalarProperty Name="MatchesLost" ColumnName="MatchesLost" />
+          <ScalarProperty Name="GoalsScored" ColumnName="GoalsScored" />
+          <ScalarProperty Name="GoalsLost" ColumnName="GoalsLost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Matches">
-      <EntityTypeMapping TypeName="FootballDataModel.Match">
+      <EntityTypeMapping TypeName="FootballScoresDBModel.Match">
         <MappingFragment StoreEntitySet="Matches">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HomeId" ColumnName="HomeId" />
           <ScalarProperty Name="AwayId" ColumnName="AwayId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="PredictedScoreId" ColumnName="PredictedScoreId" />
-          <ScalarProperty Name="RealScoreId" ColumnName="RealScoreId" />
-          <ScalarProperty Name="Referee" ColumnName="Referee" />
+          <ScalarProperty Name="HomeGoalsPredicted" ColumnName="HomeGoalsPredicted" />
+          <ScalarProperty Name="AwayGoalsPredicted" ColumnName="AwayGoalsPredicted" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="Matchweek" ColumnName="Matchweek" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Players">
-      <EntityTypeMapping TypeName="FootballDataModel.Player">
-        <MappingFragment StoreEntitySet="Players">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Players4Match">
-      <EntityTypeMapping TypeName="FootballDataModel.Players4Match">
-        <MappingFragment StoreEntitySet="Players4Match">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-          <ScalarProperty Name="MatchId" ColumnName="MatchId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PredictedScores">
-      <EntityTypeMapping TypeName="FootballDataModel.PredictedScore">
-        <MappingFragment StoreEntitySet="PredictedScores">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="HomeGoals" ColumnName="HomeGoals" />
-          <ScalarProperty Name="AwayGoals" ColumnName="AwayGoals" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RealScores">
-      <EntityTypeMapping TypeName="FootballDataModel.RealScore">
-        <MappingFragment StoreEntitySet="RealScores">
+    <EntitySetMapping Name="Scores">
+      <EntityTypeMapping TypeName="FootballScoresDBModel.Score">
+        <MappingFragment StoreEntitySet="Scores">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HomeGoals" ColumnName="HomeGoals" />
           <ScalarProperty Name="AwayGoals" ColumnName="AwayGoals" />
@@ -54,19 +43,22 @@
           <ScalarProperty Name="AwayShotsOnTarget" ColumnName="AwayShotsOnTarget" />
           <ScalarProperty Name="HomeCorners" ColumnName="HomeCorners" />
           <ScalarProperty Name="AwayCorners" ColumnName="AwayCorners" />
-          <ScalarProperty Name="HomeOffsides" ColumnName="HomeOffsides" />
-          <ScalarProperty Name="AwayOffsides" ColumnName="AwayOffsides" />
           <ScalarProperty Name="HomeFouls" ColumnName="HomeFouls" />
           <ScalarProperty Name="AwayFouls" ColumnName="AwayFouls" />
           <ScalarProperty Name="HomeYellowCards" ColumnName="HomeYellowCards" />
           <ScalarProperty Name="AwayYellowCards" ColumnName="AwayYellowCards" />
           <ScalarProperty Name="HomeRedCards" ColumnName="HomeRedCards" />
           <ScalarProperty Name="AwayRedCards" ColumnName="AwayRedCards" />
+          <ScalarProperty Name="HalfTimeHomeGoals" ColumnName="HalfTimeHomeGoals" />
+          <ScalarProperty Name="HalfTimeAwayGoals" ColumnName="HalfTimeAwayGoals" />
+          <ScalarProperty Name="Referee" ColumnName="Referee" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="MatchId" ColumnName="MatchId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="FootballDataModel.sysdiagram">
+      <EntityTypeMapping TypeName="FootballScoresDBModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -77,10 +69,12 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Teams">
-      <EntityTypeMapping TypeName="FootballDataModel.Team">
+      <EntityTypeMapping TypeName="FootballScoresDBModel.Team">
         <MappingFragment StoreEntitySet="Teams">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

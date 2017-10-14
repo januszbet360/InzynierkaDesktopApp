@@ -30,3 +30,4 @@ E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\Predictiv
 E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.csproj.GenerateResource.Cache
 E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.exe
 E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.pdb
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.csprojResolveAssemblyReference.cache

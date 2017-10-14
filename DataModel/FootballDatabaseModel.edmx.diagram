@@ -4,20 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5dad92bb938641ce820b8b524e8ddeaa" Name="Diagram1">
-        <EntityTypeShape EntityType="FootballDataModel.Match" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballDataModel.Player" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballDataModel.Players4Match" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballDataModel.PredictedScore" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballDataModel.RealScore" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballDataModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballDataModel.Team" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <AssociationConnector Association="FootballDataModel.FK_Matches_PredictedScores" ManuallyRouted="false" />
-        <AssociationConnector Association="FootballDataModel.FK_Matches_RealScores" ManuallyRouted="false" />
-        <AssociationConnector Association="FootballDataModel.FK_Matches_TeamsAway" ManuallyRouted="false" />
-        <AssociationConnector Association="FootballDataModel.FK_Matches_TeamsHome" ManuallyRouted="false" />
-        <AssociationConnector Association="FootballDataModel.FK_Players4Match_Matches" ManuallyRouted="false" />
-        <AssociationConnector Association="FootballDataModel.FK_Players4Match_Players" ManuallyRouted="false" />
+      <Diagram DiagramId="e974e8f82ec9493e862361d1dcc7b49d" Name="Diagram1">
+        <EntityTypeShape EntityType="FootballScoresDBModel.FullStatistic" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballScoresDBModel.Match" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballScoresDBModel.Score" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballScoresDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballScoresDBModel.Team" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="FootballScoresDBModel.FK__FullStati__TeamI__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballScoresDBModel.FK__Matches__AwayId__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballScoresDBModel.FK__Matches__HomeId__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballScoresDBModel.FK__Scores__MatchId__440B1D61" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
