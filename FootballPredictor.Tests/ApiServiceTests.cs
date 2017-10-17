@@ -12,13 +12,6 @@ namespace FootballPredictor.Tests
         ApiDownloader _api = new ApiDownloader();
 
         [TestMethod]
-        public void GetCsv()
-        {
-            var path = _api.GetScoresCsv();
-            Assert.IsTrue(File.Exists(path));
-        }
-
-        [TestMethod]
         public void GetFixture()
         {
             var s = _api.GetMatchdayJson(1);

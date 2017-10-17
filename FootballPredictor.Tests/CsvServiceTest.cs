@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataDownloader;
+using System.IO;
 
 namespace FootballPredictor.Tests
 {
@@ -10,9 +11,17 @@ namespace FootballPredictor.Tests
     /// Summary description for ScoreServiceTests
     /// </summary>
     [TestClass]
-    public class ScoreServiceTests
+    public class CsvServiceTest
     {
-        CsvScoreService _ds = new CsvScoreService();
+        CsvService _cs = new CsvService();
+
+        [TestMethod]
+        public void GetCsv()
+        {
+            var cd = new CsvDownloader();
+            var path = cd.GetScoresCsv();
+            Assert.IsTrue(File.Exists(path));
+        }
 
         [TestMethod]
         public void CheckSeasonForDate()
@@ -30,17 +39,17 @@ namespace FootballPredictor.Tests
         [TestMethod]
         public void CheckParseCsv()
         {
-            var res = _ds.ParseCsvScores(new DateTime(2017, 10, 1));
+            var res = _cs.ParseCsvScores(new DateTime(2017, 10, 1));
             Assert.AreEqual(res.Count, 3);
 
-            res = _ds.ParseCsvScores(new DateTime(2017, 1, 1));
+            res = _cs.ParseCsvScores(new DateTime(2017, 1, 1));
             Assert.AreEqual(res.Count, 70);
         }
 
         [TestMethod]
         public void InsertScores()
         {
-            var counter = _ds.InsertScores(new DateTime(2017, 1, 1));
+            var counter = _cs.InsertScores(new DateTime(2017, 1, 1));
             Assert.IsTrue(counter > 0);
         }
 

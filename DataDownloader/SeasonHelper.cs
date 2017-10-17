@@ -10,22 +10,40 @@ namespace DataDownloader
     {
         public static string GetCurrentSeason(DateTime date)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder currentSeason = new StringBuilder();
 
+            // Example: match on 23 October 2012 = season "2012/2013"
             if (date.Month >= 7)
             {
-                sb.Append(date.Year);
-                sb.Append('/');
-                sb.Append(date.Year + 1);
+                currentSeason.Append(date.Year);
+                currentSeason.Append('/');
+                currentSeason.Append(date.Year + 1);
             }
             else
             {
-                sb.Append(date.Year - 1);
-                sb.Append('/');
-                sb.Append(date.Year);
+                currentSeason.Append(date.Year - 1);
+                currentSeason.Append('/');
+                currentSeason.Append(date.Year);
             }
-            return sb.ToString();
+            return currentSeason.ToString();
         }
 
+        public static string GetCurrentSeasonShort(DateTime date)
+        {
+            StringBuilder currentSeason = new StringBuilder();
+
+            // Example: match on 23 October 2012 = season "1213"
+            if (date.Month >= 7)
+            {
+                currentSeason.Append(date.Year % 100);
+                currentSeason.Append((date.Year + 1) % 100);
+            }
+            else
+            {
+                currentSeason.Append((date.Year - 1) % 100);
+                currentSeason.Append(date.Year % 100);
+            }
+            return currentSeason.ToString();
+        }
     }
 }

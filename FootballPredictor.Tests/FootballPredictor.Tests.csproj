@@ -61,7 +61,7 @@
     <Compile Include="ApiServiceTests.cs" />
     <Compile Include="MatchdayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreServiceTests.cs" />
+    <Compile Include="CsvServiceTest.cs" />
     <Compile Include="TeamDataServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

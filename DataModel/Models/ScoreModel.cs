@@ -14,7 +14,6 @@ namespace DataModel.Models
         public int AwayGoals { get; set; }
         public int HalfTimeHomeGoals { get; set; }
         public int HalfTimeAwayGoals { get; set; }
-        public DateTime Date { get; set; }
         public int HomeShots { get; set; }
         public int AwayShots { get; set; }
         public int HomeShotsOnTarget { get; set; }
@@ -28,8 +27,8 @@ namespace DataModel.Models
         public int HomeRedCards { get; set; }
         public int AwayRedCards { get; set; }
         public string Referee { get; set; }
-
         public string Season { get; set; }
+        public DateTime Date { get; set; }
 
         public Score ToDbObject()
         {
@@ -74,6 +73,5 @@ namespace DataModel.Models
             }
             return s;
         }
-
     }
 }

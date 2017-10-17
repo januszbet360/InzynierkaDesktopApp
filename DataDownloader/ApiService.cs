@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataDownloader
 {
-    public class MatchdayService
+    public class ApiService
     {
         private ApiDownloader _api = new ApiDownloader();
       
@@ -122,6 +122,5 @@ namespace DataDownloader
             }
             return counter;
         }
-        
     }
 }

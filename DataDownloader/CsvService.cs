@@ -10,15 +10,26 @@ using System.Threading.Tasks;
 
 namespace DataDownloader
 {
-    public class CsvScoreService
+    public class CsvService
     {
         string dir = AppDomain.CurrentDomain.BaseDirectory;
 
+        /******************************     Parse methods     ****************************************/
         public List<ScoreModel> ParseCsvScores(DateTime startDate)
+        {
+            return ParseCsvScores(dir + "\\" + Constants.CSV_CURRENT_FILE_NAME, startDate);
+        }
+
+        public List<ScoreModel> ParseCsvScores(string csvFilePath)
+        {
+            return ParseCsvScores(csvFilePath, DateTime.MinValue);
+        }
+
+        public List<ScoreModel> ParseCsvScores(string csvFilePath, DateTime startDate)
         {
             var scores = new List<ScoreModel>();
 
-            using (TextReader reader = File.OpenText(dir + "\\" + Constants.CSV_FILE_NAME))
+            using (TextReader reader = File.OpenText(@csvFilePath))
             {
                 using (CsvReader csv = new CsvReader(reader))
                 {
@@ -50,6 +61,7 @@ namespace DataDownloader
                             score.AwayRedCards = csv.GetField<int>("AR");
                             score.Referee = csv.GetField<string>("Referee");
                             score.Season = season;
+                            //score.Date = date;
 
                             scores.Add(score);
                         }
@@ -59,9 +71,58 @@ namespace DataDownloader
             return scores;
         }
 
+        public List<MatchModel> ParseCsvMatches(string csvFilePath)
+        {
+            List<MatchModel> matches = new List<MatchModel>();
+
+            using (TextReader reader = File.OpenText(@csvFilePath))
+            {
+                using (CsvReader csv = new CsvReader(reader))
+                {
+                    int matchOfSeason = 0;
+                    while (csv.Read())
+                    {
+                        var date = csv.GetField<DateTime>("Date");
+
+                        MatchModel match = new MatchModel
+                        {
+                            HomeTeam = csv.GetField<string>("HomeTeam"),
+                            AwayTeam = csv.GetField<string>("AwayTeam"),
+                            Date = date,
+                            Season = SeasonHelper.GetCurrentSeason(date),
+                            Matchweek = (int)(matchOfSeason / 10) + 1
+                        };
+                        matchOfSeason++;
+                        matches.Add(match);
+                    }
+                }
+            }
+            return matches;
+        }
+        /**********************************************************************************************/
+        /******************************     Insert methods     ****************************************/
         public int InsertScores(DateTime startDate)
         {
-            var scores = ParseCsvScores(startDate);
+            return InsertScores(null, startDate);
+        }
+
+        public int InsertScores(string csvFilePath)
+        {
+            return InsertScores(csvFilePath, DateTime.MinValue);
+        }
+
+        public int InsertScores(string csvFilePath, DateTime startDate)
+        {
+            List<ScoreModel> scores = null;
+            if (csvFilePath == null)
+            {
+                scores = ParseCsvScores(startDate);
+            }
+            else
+            {
+                scores = ParseCsvScores(csvFilePath, startDate);
+            }
+
             int counter = 0;
 
             using (var ctx = new FootballEntities())
@@ -74,7 +135,16 @@ namespace DataDownloader
 
                         foreach (var s in scores)
                         {
-                            ctx.Scores.Add(s.ToDbObject());
+                            var dbScore = s.ToDbObject();
+
+                            if (ctx.Scores.Any(sc => sc.MatchId == dbScore.MatchId))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                ctx.Scores.Add(dbScore);
+                            }
 
                             UpdateLeagueTable(s);
                             counter++;
@@ -91,17 +161,57 @@ namespace DataDownloader
                 }
             }
             return counter;
-
         }
+
+        public int InsertMatches(string csvFilePath)
+        {
+            List<MatchModel> matches = ParseCsvMatches(csvFilePath);
+
+            int counter = 0;
+
+            using (var ctx = new FootballEntities())
+            {
+                using (var transaction = ctx.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        //TODO error model
+
+                        foreach (var match in matches)
+                        {
+                            if (ctx.Matches.Any(m => m.Team.Name == match.HomeTeam && m.Team1.Name == match.AwayTeam
+                                    && m.Season == match.Season))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                ctx.Matches.Add(match.ToDbObjectFromCSV());
+                                counter++;
+                            }
+                        }
+
+                        ctx.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                    }
+                }
+            }
+            return counter;
+        }
+
+        /**********************************************************************************************/
 
         public void UpdateLeagueTable(ScoreModel s)
         {
             using (var ctx = new FootballEntities())
             {
+                // jesli nie ma jeszcze teamu w tabeli, to go dodaj z zerowym dorobkiem
                 var home = ctx.FullStatistics
                     .FirstOrDefault(t => t.Team.Name == s.HomeTeam && t.Season == s.Season);
-
-                // jesli nie ma jeszcze teamu w tabeli, to go dodaj z zerowym dorobkiem
                 if (home == null)
                 {
                     home = AddToLeagueTable(s.HomeTeam, s.Season);
@@ -110,7 +220,6 @@ namespace DataDownloader
                 // jesli nie ma jeszcze teamu w tabeli, to go dodaj z zerowym dorobkiem
                 var away = ctx.FullStatistics
                     .FirstOrDefault(t => t.Team.Name == s.AwayTeam && t.Season == s.Season);
-
                 if (away == null)
                 {
                     away = AddToLeagueTable(s.AwayTeam, s.Season);

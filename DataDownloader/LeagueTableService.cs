@@ -37,6 +37,5 @@ namespace DataDownloader
             }
             return table;
         }
-
     }
 }

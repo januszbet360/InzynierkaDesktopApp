@@ -14,7 +14,6 @@ namespace DataModel.Models
         public int? AwayGoalsPredicted { get; set; }
         public string Season { get; set; }
         public int Matchweek { get; set; }
-
         public string HomeTeam { get; set; }
         public string AwayTeam { get; set; }
 
@@ -29,6 +28,20 @@ namespace DataModel.Models
             {
                 m.HomeId = ctx.Teams.First(t => t.FullName == HomeTeam).Id;
                 m.AwayId = ctx.Teams.First(t => t.FullName == AwayTeam).Id;
+            }
+            return m;
+        }
+        public Match ToDbObjectFromCSV()
+        {
+            var m = new Match();
+
+            m.Matchweek = Matchweek;
+            m.Season = Season;
+            m.Date = Date;
+            using (var ctx = new FootballEntities())
+            {
+                m.HomeId = ctx.Teams.First(t => t.Name == HomeTeam).Id;
+                m.AwayId = ctx.Teams.First(t => t.Name == AwayTeam).Id;
             }
             return m;
         }

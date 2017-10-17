@@ -8,7 +8,7 @@ namespace FootballPredictor.Tests
     [TestClass]
     public class MatchdayTests
     {
-        private readonly MatchdayService _ds = new MatchdayService();
+        private readonly ApiService _ds = new ApiService();
 
         [TestMethod]
         public void GetMatches()

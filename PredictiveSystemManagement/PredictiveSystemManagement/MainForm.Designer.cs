@@ -42,11 +42,14 @@ namespace PredictiveSystemManagement
             this.AddFileButton = new System.Windows.Forms.Button();
             this.ManagementSystemPanel = new System.Windows.Forms.Panel();
             this.ManagementSystemGroupBox = new System.Windows.Forms.GroupBox();
+            this.OutputTextBox = new System.Windows.Forms.TextBox();
+            this.CheckMatchweekButton = new System.Windows.Forms.Button();
             this.LogoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.HistoricalDataPanel.SuspendLayout();
             this.HistoricalDataGroupBox.SuspendLayout();
             this.ManagementSystemPanel.SuspendLayout();
+            this.ManagementSystemGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogoPanel
@@ -168,6 +171,8 @@ namespace PredictiveSystemManagement
             // 
             // ManagementSystemGroupBox
             // 
+            this.ManagementSystemGroupBox.Controls.Add(this.CheckMatchweekButton);
+            this.ManagementSystemGroupBox.Controls.Add(this.OutputTextBox);
             this.ManagementSystemGroupBox.Font = new System.Drawing.Font("Tekton Pro Ext", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManagementSystemGroupBox.Location = new System.Drawing.Point(29, 19);
             this.ManagementSystemGroupBox.Name = "ManagementSystemGroupBox";
@@ -175,6 +180,27 @@ namespace PredictiveSystemManagement
             this.ManagementSystemGroupBox.TabIndex = 0;
             this.ManagementSystemGroupBox.TabStop = false;
             this.ManagementSystemGroupBox.Text = "Zarządzanie systemem predykcji: ";
+            // 
+            // OutputTextBox
+            // 
+            this.OutputTextBox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.OutputTextBox.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.OutputTextBox.ForeColor = System.Drawing.SystemColors.Menu;
+            this.OutputTextBox.Location = new System.Drawing.Point(26, 228);
+            this.OutputTextBox.Multiline = true;
+            this.OutputTextBox.Name = "OutputTextBox";
+            this.OutputTextBox.Size = new System.Drawing.Size(611, 153);
+            this.OutputTextBox.TabIndex = 0;
+            // 
+            // CheckMatchweekButton
+            // 
+            this.CheckMatchweekButton.Location = new System.Drawing.Point(152, 122);
+            this.CheckMatchweekButton.Name = "CheckMatchweekButton";
+            this.CheckMatchweekButton.Size = new System.Drawing.Size(355, 48);
+            this.CheckMatchweekButton.TabIndex = 1;
+            this.CheckMatchweekButton.Text = "Sprawdź kolejkę piłkarską";
+            this.CheckMatchweekButton.UseVisualStyleBackColor = true;
+            this.CheckMatchweekButton.Click += new System.EventHandler(this.CheckMatchweekButton_Click);
             // 
             // MainForm
             // 
@@ -196,6 +222,8 @@ namespace PredictiveSystemManagement
             this.HistoricalDataGroupBox.ResumeLayout(false);
             this.HistoricalDataGroupBox.PerformLayout();
             this.ManagementSystemPanel.ResumeLayout(false);
+            this.ManagementSystemGroupBox.ResumeLayout(false);
+            this.ManagementSystemGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,6 +241,8 @@ namespace PredictiveSystemManagement
         private Button RemoveFileButton;
         private Button AddFileButton;
         private ListBox FilesListBox;
+        private TextBox OutputTextBox;
+        private Button CheckMatchweekButton;
     }
 }
 

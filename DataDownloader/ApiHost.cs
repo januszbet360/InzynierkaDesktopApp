@@ -12,8 +12,6 @@ namespace DataDownloader
     {
         private static readonly ApiHost _instance = new ApiHost();
 
-        private const string URI = "http://api.football-data.org/";
-
         HttpClient _host;
 
         public HttpClient Host
@@ -35,7 +33,7 @@ namespace DataDownloader
         private ApiHost()
         {
             _host = new HttpClient();
-            _host.BaseAddress = new Uri(URI);
+            _host.BaseAddress = new Uri(Constants.API_URI);
             _host.DefaultRequestHeaders.Accept.Clear();
             _host.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _host.DefaultRequestHeaders.Add("x-auth-token", Constants.API_TOKEN);

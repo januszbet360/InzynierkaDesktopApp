@@ -58,6 +58,10 @@ namespace PredictiveSystemManagement
             //GroupBox
             public const int HeightGroupBoxMS = 400;
             public const int WidthGroupBoxMS = 650;
+
+            //OutputTextBox
+            public const int HeightOutputTextBoxMS = 150;
+            public const int WidthOutputTextBoxMS = 600;
         ///////////////////////////////////////////
     }
 }

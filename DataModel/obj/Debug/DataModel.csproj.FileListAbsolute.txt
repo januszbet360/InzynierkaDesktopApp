@@ -7,3 +7,14 @@ E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\EntityFramework.
 E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\EntityFramework.SqlServer.xml
 E:\Projekty Visual Studio\FootballPredictor\DataModel\obj\Debug\DataModel.dll
 E:\Projekty Visual Studio\FootballPredictor\DataModel\obj\Debug\DataModel.pdb
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.csproj.CoreCompileInputs.cache
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.pdb
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\DataModel.dll.config
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\DataModel.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\DataModel.pdb
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\EntityFramework.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\EntityFramework.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache

@@ -18,7 +18,6 @@ namespace DataModel.Models
         public int Wins { get; set; }
         public int Draws { get; set; }
         public int Losses { get; set; }
-
         public string ImageUrl { get; set; }
     }
 }

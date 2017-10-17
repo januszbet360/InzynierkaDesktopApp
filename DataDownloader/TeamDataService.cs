@@ -14,31 +14,35 @@ namespace DataDownloader
         public List<Team> GetTeamsFromFile()
         {
             var teams = new List<Team>();
-            string dir = AppDomain.CurrentDomain.BaseDirectory;
-
-            var lines = File.ReadLines(dir + '\\' + Constants.TEAMS_INFO_FILE_NAME);
-
-            foreach (var line in lines)
+            try
             {
-                var info = line.Split(',');
-                var team = new Team();
-                team.Name = info[0];
-                team.FullName = info[1];
-                team.ImageURL = info[2];
-                teams.Add(team);
-            }
+                string teamsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.TEAMS_INFO_FILE_NAME);
+                var lines = File.ReadLines(teamsFilePath);
 
+                foreach (var line in lines)
+                {
+                    var info = line.Split(',');
+                    var team = new Team();
+                    team.Name = info[0];
+                    team.FullName = info[1];
+                    team.ImageURL = info[2];
+                    teams.Add(team);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("[Error] DataDownloader::GetTeamsFromFile() - FAILED\n" + ex.ToString());
+            }
             return teams;
         }
 
-        public void InsertTeams()
+        public bool InsertTeams()
         {
-            var teams = GetTeamsFromFile();
-
             using (var ctx = new FootballEntities())
             {
                 if (ctx.Teams.Count() == 0)
                 {
+                    var teams = GetTeamsFromFile();
                     using (var transaction = ctx.Database.BeginTransaction())
                     {
                         try
@@ -47,14 +51,11 @@ namespace DataDownloader
                             {
                                 foreach (var t in teams)
                                 {
-                                    if (t.Name == "Lincoln")
-                                    {
-                                        t.Name = "Lincoln";
-                                    }
                                     ctx.Teams.Add(t);
                                 }
                                 ctx.SaveChanges();
                                 transaction.Commit();
+                                return true;
                             }
                             else
                             {
@@ -68,6 +69,7 @@ namespace DataDownloader
                     }
                 }
             }
+            return false;
         }
     }
 }

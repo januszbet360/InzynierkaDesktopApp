@@ -12,12 +12,10 @@ namespace DataDownloader
     {
         public const int LEAGUE_ID = 445;
         public const string API_TOKEN = "eddb86ccce2b4e579a2817e0a65544d4";
+        public const string API_URI = "http://api.football-data.org/";
 
-        public const string CSV_FILE_NAME = "scores.csv";
+        public const string CSV_CURRENT_FILE_NAME = "CurrentScores.csv";
+        public const string CSV_PREVIOUSLY_FILE_NAME = "PreviouslyScores.csv";
         public const string TEAMS_INFO_FILE_NAME = "teams.txt";
     }
-
-
-
 }
-

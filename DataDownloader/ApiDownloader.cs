@@ -34,22 +34,7 @@ namespace DataDownloader
             }
             return null;
         }
-
-        // CSV with scores from football-data.co.uk
-        public string GetScoresCsv()
-        {
-            using (var client = new WebClient())
-            {
-                string dir = AppDomain.CurrentDomain.BaseDirectory;
-                string path = dir + Constants.CSV_FILE_NAME;
-
-                client.DownloadFile(@"http://www.football-data.co.uk/mmz4281/1718/E0.csv",
-                    path);
-
-                return path;
-            }
-        }
-
+        
         public string GetAllFixturesJson()
         {
             var resp = ApiHost.Instance.Host
@@ -61,7 +46,5 @@ namespace DataDownloader
             }
             return null;
         }
-
-
     }
 }
