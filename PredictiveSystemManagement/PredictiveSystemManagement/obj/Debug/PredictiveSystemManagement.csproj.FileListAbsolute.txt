@@ -55,3 +55,13 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.xml
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\DataDownloader.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\DataModel.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Newtonsoft.Json.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\DataDownloader.pdb
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\DataModel.pdb
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Newtonsoft.Json.xml

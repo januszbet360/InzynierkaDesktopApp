@@ -66,8 +66,10 @@
     <Compile Include="CsvDownloader.cs" />
     <Compile Include="LeagueTableService.cs" />
     <Compile Include="ApiService.cs" />
+    <Compile Include="Prediction\ScoresPredictor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CsvService.cs" />
+    <Compile Include="ScoreEffectivenessService.cs" />
     <Compile Include="SeasonHelper.cs" />
     <Compile Include="TeamDataService.cs" />
   </ItemGroup>

@@ -17,32 +17,19 @@ namespace DataDownloader
       
         public List<MatchModel> GetAllMatches()
         {
-            var matches = new List<MatchModel>();
-
             var o = JObject.Parse(_api.GetAllFixturesJson());
-
-            var jsonMatches = o["fixtures"].Children();
-            foreach (var m in jsonMatches)
-            {
-                if ((String)m["status"] == "SCHEDULED")
-                {
-                    var match = new MatchModel();
-                    match.Date = (DateTime)m["date"];
-                    match.HomeTeam = (String)m["homeTeamName"];
-                    match.AwayTeam = (String)m["awayTeamName"];
-                    match.Season = SeasonHelper.GetCurrentSeason(match.Date);
-                    match.Matchweek = (int)m["matchday"];
-                    matches.Add(match);
-                }
-            }
-            return matches;
+            return ParseJsonMatches(o);
         }
 
         public List<MatchModel> GetMatches(int matchday)
         {
-            var matches = new List<MatchModel>();
-
             var o = JObject.Parse(_api.GetMatchdayJson(matchday));
+            return ParseJsonMatches(o);
+        }
+
+        public List<MatchModel> ParseJsonMatches(JObject o)
+        {
+            var matches = new List<MatchModel>();
 
             var jsonMatches = o["fixtures"].Children();
             foreach (var m in jsonMatches)
@@ -64,39 +51,17 @@ namespace DataDownloader
         public int InsertMatches(int matchday)
         {
             var matches = GetMatches(matchday);
-            int counter = 0;
-
-            using (var ctx = new FootballEntities())
-            {
-                using (var transaction = ctx.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        foreach (var m in matches)
-                        {
-                            var matchDb = m.ToDbObject();
-                            matchDb.HomeId = ctx.Teams.First(t => t.Name == m.HomeTeam).Id;
-                            matchDb.AwayId = ctx.Teams.First(t => t.Name == m.AwayTeam).Id;
-
-                            ctx.Matches.Add(m.ToDbObject());
-                            counter++;
-                        }
-
-                        ctx.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                    }
-                }
-            }
-            return counter;
+            return InsertMatches(matches);
         }
 
         public int InsertAllMatches()
         {
             var matches = GetAllMatches();
+            return InsertMatches(matches);
+        }
+
+        public int InsertMatches(List<MatchModel> matches)
+        {
             int counter = 0;
 
             using (var ctx = new FootballEntities())

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\FootballDatabaseModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Projekty Visual Studio\FootballPredictor\DataModel\FootballDatabaseModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

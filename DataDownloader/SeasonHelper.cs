@@ -45,5 +45,6 @@ namespace DataDownloader
             }
             return currentSeason.ToString();
         }
+
     }
 }

@@ -270,5 +270,11 @@ namespace DataDownloader
                 return fs;
             }
         }
+
+        public void DeleteCsv(string path)
+        {
+            File.Delete(path);
+        }
+        
     }
 }
