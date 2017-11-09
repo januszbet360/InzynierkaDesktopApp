@@ -1,0 +1,109 @@
+**************************************************************************************
+*** | Dnia: 05-11-2017 | Godzina: 22:50 | ********************************************
+**************************************************************************************
+
+		 Raport zbiorczy skuteczności systemu predykcji: 
+				 <<nazwa_nazwa_nazwa>>
+
+**************************************************************************************
+
+	 Skuteczność predykcji sezonu 2017/2018: 45%
+		- kolejka 1: 40%
+		- kolejka 2: 50%
+		- kolejka 3: 40%
+		- kolejka 4: 50%
+		- kolejka 5: 30%
+		- kolejka 6: 40%
+		- kolejka 7: 40%
+		- kolejka 8: 50%
+		- kolejka 9: 60%
+		- kolejka 10: 50%
+
+	 Skuteczność predykcji sezonu 2016/2017: 49,21%
+		- kolejka 1: 30%
+		- kolejka 2: 40%
+		- kolejka 3: 40%
+		- kolejka 4: 30%
+		- kolejka 5: 80%
+		- kolejka 6: 50%
+		- kolejka 7: 10%
+		- kolejka 8: 50%
+		- kolejka 9: 50%
+		- kolejka 10: 40%
+		- kolejka 11: 40%
+		- kolejka 12: 40%
+		- kolejka 13: 50%
+		- kolejka 14: 70%
+		- kolejka 15: 80%
+		- kolejka 16: 60%
+		- kolejka 17: 50%
+		- kolejka 18: 50%
+		- kolejka 19: 60%
+		- kolejka 20: 50%
+		- kolejka 21: 50%
+		- kolejka 22: 40%
+		- kolejka 23: 20%
+		- kolejka 24: 70%
+		- kolejka 25: 50%
+		- kolejka 26: 80%
+		- kolejka 27: 40%
+		- kolejka 28: 70%
+		- kolejka 29: 40%
+		- kolejka 30: 70%
+		- kolejka 31: 40%
+		- kolejka 32: 60%
+		- kolejka 33: 50%
+		- kolejka 34: 20%
+		- kolejka 35: 40%
+		- kolejka 36: 60%
+		- kolejka 37: 50%
+		- kolejka 38: 50%
+
+	 Skuteczność predykcji sezonu 2015/2016: 41,32%
+		- kolejka 1: 20%
+		- kolejka 2: 30%
+		- kolejka 3: 10%
+		- kolejka 4: 30%
+		- kolejka 5: 70%
+		- kolejka 6: 30%
+		- kolejka 7: 50%
+		- kolejka 8: 30%
+		- kolejka 9: 40%
+		- kolejka 10: 40%
+		- kolejka 11: 50%
+		- kolejka 12: 40%
+		- kolejka 13: 40%
+		- kolejka 14: 40%
+		- kolejka 15: 40%
+		- kolejka 16: 40%
+		- kolejka 17: 30%
+		- kolejka 18: 60%
+		- kolejka 19: 40%
+		- kolejka 20: 60%
+		- kolejka 21: 30%
+		- kolejka 22: 60%
+		- kolejka 23: 20%
+		- kolejka 24: 40%
+		- kolejka 25: 40%
+		- kolejka 26: 30%
+		- kolejka 27: 70%
+		- kolejka 28: 40%
+		- kolejka 29: 40%
+		- kolejka 30: 20%
+		- kolejka 31: 40%
+		- kolejka 32: 60%
+		- kolejka 33: 40%
+		- kolejka 34: 40%
+		- kolejka 35: 50%
+		- kolejka 36: 50%
+		- kolejka 37: 50%
+		- kolejka 38: 60%
+
+**************************************************************************************
+
+	 Ogólna skuteczność systemu predykcji: 45,2326%
+	 Najlepsza skuteczność predykcji wystąpiła w sezonie 2016/2017: 49,21%
+
+**************************************************************************************
+********************* Copyrights (C) 2017 <<nazwa_nazwa_nazwa>> **********************
+**************************************************************************************

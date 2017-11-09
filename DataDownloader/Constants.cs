@@ -15,7 +15,6 @@ namespace DataDownloader
         public const string API_URI = "http://api.football-data.org/";
 
         public const string CSV_CURRENT_FILE_NAME = "CurrentScores.csv";
-        public const string CSV_PREVIOUSLY_FILE_NAME = "PreviouslyScores.csv";
         public const string TEAMS_INFO_FILE_NAME = "teams.txt";
     }
 }

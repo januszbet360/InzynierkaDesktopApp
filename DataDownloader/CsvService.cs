@@ -61,7 +61,7 @@ namespace DataDownloader
                             score.AwayRedCards = csv.GetField<int>("AR");
                             score.Referee = csv.GetField<string>("Referee");
                             score.Season = season;
-                            //score.Date = date;
+                            score.Date = date;
 
                             scores.Add(score);
                         }
@@ -179,9 +179,13 @@ namespace DataDownloader
 
                         foreach (var match in matches)
                         {
-                            if (ctx.Matches.Any(m => m.Team.Name == match.HomeTeam && m.Team1.Name == match.AwayTeam
+                            var hID = ctx.Teams.FirstOrDefault(t => t.Name == match.HomeTeam).Id;
+                            var aID = ctx.Teams.FirstOrDefault(t => t.Name == match.AwayTeam).Id;
+                            if (ctx.Matches.Any(m => m.HomeId == hID && m.AwayId == aID
                                     && m.Season == match.Season))
-                            {
+                               // if (ctx.Matches.Any(m => m.Team.Name == match.HomeTeam && m.Team1.Name == match.AwayTeam
+                            //   && m.Season == match.Season))
+                                {
                                 continue;
                             }
                             else

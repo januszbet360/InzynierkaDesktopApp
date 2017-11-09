@@ -24,16 +24,6 @@ namespace DataDownloader
             }
         }
 
-        // all scores, including exact score
-        public double ComputeWeighted()
-        {
-            using (var ctx = new FootballEntities())
-            {
-                var matches = ctx.Matches.ToList();
-                return Compute(matches, true);
-            }
-        }
-
         // before certain date
         public double Compute(DateTime before)
         {
@@ -44,17 +34,7 @@ namespace DataDownloader
             }
         }
 
-        // before certain date, including exact score
-        public double ComputeWeighted(DateTime before)
-        {
-            using (var ctx = new FootballEntities())
-            {
-                var matches = ctx.Matches.Where(m => m.Date < before).ToList();
-                return Compute(matches, true);
-            }
-        }
-
-        // season
+        // season (e.g. "2015/2016")
         public double Compute(string season)
         {
             using (var ctx = new FootballEntities())
@@ -64,13 +44,13 @@ namespace DataDownloader
             }
         }
 
-        // season, including exact score
-        public double ComputeWeighted(string season)
+        // only one matchweek from season (e.g. "2015/2016")
+        public double Compute(int matchweek, string season)
         {
             using (var ctx = new FootballEntities())
             {
-                var matches = ctx.Matches.Where(m => m.Season == season).ToList();
-                return Compute(matches, true);
+                var matches = ctx.Matches.Where(m => m.Season == season && m.Matchweek == matchweek).ToList();
+                return Compute(matches, false);
             }
         }
 
@@ -85,6 +65,46 @@ namespace DataDownloader
                     .ToList();
 
                 return Compute(matches, false);
+            }
+        }
+
+        // all scores, including exact score
+        public double ComputeWeighted()
+        {
+            using (var ctx = new FootballEntities())
+            {
+                var matches = ctx.Matches.ToList();
+                return Compute(matches, true);
+            }
+        }
+        
+        // before certain date, including exact score
+        public double ComputeWeighted(DateTime before)
+        {
+            using (var ctx = new FootballEntities())
+            {
+                var matches = ctx.Matches.Where(m => m.Date < before).ToList();
+                return Compute(matches, true);
+            }
+        }
+
+        // season, including exact score
+        public double ComputeWeighted(string season)
+        {
+            using (var ctx = new FootballEntities())
+            {
+                var matches = ctx.Matches.Where(m => m.Season == season).ToList();
+                return Compute(matches, true);
+            }
+        }
+        
+        // only one matchweek from season (e.g. "2015/2016")
+        public double ComputeWeighted(int matchweek, string season)
+        {
+            using (var ctx = new FootballEntities())
+            {
+                var matches = ctx.Matches.Where(m => m.Season == season && m.Matchweek == matchweek).ToList();
+                return Compute(matches, true);
             }
         }
 
@@ -131,17 +151,27 @@ namespace DataDownloader
                                 {
                                     effective += WINNER_RATIO;
                                     if ((int)pHome == rHome && (int)pAway == rAway)
+                                    {
                                         effective += EXACT_SCORE_RATIO;
+                                    }
                                 }
                                 else
+                                {
                                     effective += 1.0;
+                                }
                             }
                         }
                     }
                 }
 
-                if (matchesNo == 0) return 0.0;
-                else return effective / (double)matchesNo;
+                if (matchesNo == 0)
+                {
+                    return 0.0;
+                }
+                else
+                {
+                    return effective / (double)matchesNo;
+                }
             }
         }
 
@@ -149,12 +179,17 @@ namespace DataDownloader
         protected Winner GetWinner(int homeGoals, int awayGoals)
         {
             if (homeGoals > awayGoals)
+            {
                 return Winner.Home;
+            }
             else if (homeGoals < awayGoals)
+            {
                 return Winner.Away;
+            }
             else
+            {
                 return Winner.Draw;
+            }
         }
-
     }
 }

@@ -28,8 +28,15 @@ namespace PredictiveSystemManagement
             // Teams are inserted only if table "Teams" is null
             if (new TeamDataService().InsertTeams())
             {
-                Log("Tabela zespołów została zaktualizowana");
+                Log("Tabela zespołów została zaktualizowana.");
             }
+            else
+            {
+                Log("Tabela zespołów jest aktualna.");
+            }
+
+            // Set current effectiveness
+            SetEffectiveness();
         }
 
         private void SetAppearance()
@@ -97,31 +104,87 @@ namespace PredictiveSystemManagement
             {
                 int m = new CsvService().InsertMatches(csvFile);
                 Log(string.Format("Baza danych została zaktualizowana. {0} nowych rekordów w tablicy 'Matches'.", m));
+            }
+            catch (Exception)
+            {
+                //Console.WriteLine("Plik: " + csvFile + "zawiera niekompletne dane lub nieuzupełnioną kolejkę w CSV");
+            }
 
+            try
+            {
                 int s = new CsvService().InsertScores(csvFile);
                 Log(string.Format("Baza danych została zaktualizowana. {0} nowych rekordów w tablicy 'Scores'.", s));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Wybrany plik: " + csvFile + "\nzawiera niekompletne dane. Upewnij się, że wybrano prawidłowy plik.", "Błąd!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine("Error ProcessCsvFile: " + csvFile + "\n" + ex.Message);
+                //Console.WriteLine("Plik: " + csvFile + "zawiera niekompletne dane lub nieuzupełnioną kolejkę w CSV");
             }
         }
 
         private void CheckMatchweek()
         {
-            Log(string.Format("Następuje sprawdzenie aktualnej kolejki sezonu: {0}", 
+            Log(string.Format("Następuje sprawdzenie aktualnej kolejki sezonu: {0}.", 
                 DataDownloader.SeasonHelper.GetCurrentSeason(DateTime.Now)));
-            
-            // Update of CSV
-            new CsvDownloader().GetScoresCsv(DateTime.Now);
-            Log("Zaktualizowane plik z danymi.");
 
-            ProcessCsvFile(Path.Combine(Application.StartupPath, DataDownloader.Constants.CSV_CURRENT_FILE_NAME));
-            Log("Aktualizowanie bazy danych zakończone");
+            try
+            {
+                // Update of CSV
+                new CsvDownloader().GetScoresCsv(DateTime.Now);
+                Log("Zaktualizowane plik z danymi.");
+
+                string csvPath = Path.Combine(Application.StartupPath, DataDownloader.Constants.CSV_CURRENT_FILE_NAME);
+                ProcessCsvFile(csvPath);
+                Log("Aktualizowanie bazy danych zakończone.");
+
+                new CsvService().DeleteCsv(csvPath);
+            }
+            catch(Exception)
+            {
+                Log("Wystąpił nieoczekiwany problem z aktualizacją kolejki.");
+            }
         }
 
-        
+        private void SetEffectiveness()
+        {
+            try
+            {
+                int currentMatchweek = new MatchweekService().GetCurrentMatchweek();
+                double currentEffectiveness = new ScoreEffectivenessService().Compute(currentMatchweek, SeasonHelper.GetCurrentSeason(DateTime.Now)) * 100;
+
+                double previouslyEffectiveness = currentEffectiveness;
+                if (currentMatchweek > 1)
+                {
+                    previouslyEffectiveness = new ScoreEffectivenessService().Compute(currentMatchweek - 1, SeasonHelper.GetCurrentSeason(DateTime.Now)) * 100;
+                }
+
+                string compareEffectiveness = "";
+                double difference = currentEffectiveness - previouslyEffectiveness;
+                if (difference > 0)
+                {
+                    compareEffectiveness = "+";
+                    CompareEfficiencyLabel.ForeColor = System.Drawing.Color.Green;
+                }
+                else if (difference < 0)
+                {
+                    CompareEfficiencyLabel.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    CompareEfficiencyLabel.ForeColor = System.Drawing.Color.Black;
+                }
+                compareEffectiveness += difference.ToString();
+
+                CurrentEfficiencyLabel.Text = currentEffectiveness.ToString() + "%";
+                CompareEfficiencyLabel.Location = new Point(CurrentEfficiencyLabel.Location.X + CurrentEfficiencyLabel.Width + 1, CurrentEfficiencyLabel.Location.Y);
+                CompareEfficiencyLabel.Text = compareEffectiveness + "%";
+
+                Log("Skuteczność systemu została zaktualizowana.");
+            }
+            catch(Exception)
+            {  }
+        }
+
+
         private void AddFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog newFileDialog = new OpenFileDialog
@@ -170,6 +233,10 @@ namespace PredictiveSystemManagement
                     information += (">" + Path.GetFileName(listElement.FileName) + "\n");
                 }
                 MessageBox.Show(information + "zakończone sukcesem. Dane zostały dodane do bazy danych: " + Constants.NameOfDatabase, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // remove files from lists after processing
+                listOfCsvFiles.Clear();
+                FilesListBox.Items.Clear();
             }
             else
             {
@@ -181,6 +248,19 @@ namespace PredictiveSystemManagement
         private void CheckMatchweekButton_Click(object sender, EventArgs e)
         {
             CheckMatchweek();
+            SetEffectiveness();
+        }
+
+        private void GenerateReportButton_Click(object sender, EventArgs e)
+        {
+            if (new Report().GenerateReport())
+            {
+                Log("Zbiorczy raport został wygenerowany.");
+            }
+            else
+            {
+                Log("Błąd podczas tworzenia raportu zbiorczego.");
+            }
         }
     }
 }

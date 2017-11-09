@@ -42,8 +42,12 @@ namespace PredictiveSystemManagement
             this.AddFileButton = new System.Windows.Forms.Button();
             this.ManagementSystemPanel = new System.Windows.Forms.Panel();
             this.ManagementSystemGroupBox = new System.Windows.Forms.GroupBox();
-            this.OutputTextBox = new System.Windows.Forms.TextBox();
+            this.GenerateReportButton = new System.Windows.Forms.Button();
+            this.CompareEfficiencyLabel = new System.Windows.Forms.Label();
+            this.CurrentEfficiencyLabel = new System.Windows.Forms.Label();
+            this.SystemEfficiencyLabel = new System.Windows.Forms.Label();
             this.CheckMatchweekButton = new System.Windows.Forms.Button();
+            this.OutputTextBox = new System.Windows.Forms.TextBox();
             this.LogoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.HistoricalDataPanel.SuspendLayout();
@@ -171,6 +175,10 @@ namespace PredictiveSystemManagement
             // 
             // ManagementSystemGroupBox
             // 
+            this.ManagementSystemGroupBox.Controls.Add(this.GenerateReportButton);
+            this.ManagementSystemGroupBox.Controls.Add(this.CompareEfficiencyLabel);
+            this.ManagementSystemGroupBox.Controls.Add(this.CurrentEfficiencyLabel);
+            this.ManagementSystemGroupBox.Controls.Add(this.SystemEfficiencyLabel);
             this.ManagementSystemGroupBox.Controls.Add(this.CheckMatchweekButton);
             this.ManagementSystemGroupBox.Controls.Add(this.OutputTextBox);
             this.ManagementSystemGroupBox.Font = new System.Drawing.Font("Tekton Pro Ext", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -180,6 +188,62 @@ namespace PredictiveSystemManagement
             this.ManagementSystemGroupBox.TabIndex = 0;
             this.ManagementSystemGroupBox.TabStop = false;
             this.ManagementSystemGroupBox.Text = "Zarządzanie systemem predykcji: ";
+            // 
+            // GenerateReportButton
+            // 
+            this.GenerateReportButton.Font = new System.Drawing.Font("Tekton Pro Ext", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenerateReportButton.Location = new System.Drawing.Point(416, 165);
+            this.GenerateReportButton.Name = "GenerateReportButton";
+            this.GenerateReportButton.Size = new System.Drawing.Size(180, 48);
+            this.GenerateReportButton.TabIndex = 5;
+            this.GenerateReportButton.Text = "Generuj raport skuteczności";
+            this.GenerateReportButton.UseVisualStyleBackColor = true;
+            this.GenerateReportButton.Click += new System.EventHandler(this.GenerateReportButton_Click);
+            // 
+            // CompareEfficiencyLabel
+            // 
+            this.CompareEfficiencyLabel.AutoSize = true;
+            this.CompareEfficiencyLabel.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.CompareEfficiencyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CompareEfficiencyLabel.Font = new System.Drawing.Font("Tekton Pro Ext", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CompareEfficiencyLabel.Location = new System.Drawing.Point(446, 82);
+            this.CompareEfficiencyLabel.Name = "CompareEfficiencyLabel";
+            this.CompareEfficiencyLabel.Size = new System.Drawing.Size(55, 31);
+            this.CompareEfficiencyLabel.TabIndex = 4;
+            this.CompareEfficiencyLabel.Text = "0%";
+            // 
+            // CurrentEfficiencyLabel
+            // 
+            this.CurrentEfficiencyLabel.AutoSize = true;
+            this.CurrentEfficiencyLabel.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.CurrentEfficiencyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CurrentEfficiencyLabel.Font = new System.Drawing.Font("Tekton Pro Ext", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentEfficiencyLabel.Location = new System.Drawing.Point(390, 82);
+            this.CurrentEfficiencyLabel.Name = "CurrentEfficiencyLabel";
+            this.CurrentEfficiencyLabel.Size = new System.Drawing.Size(55, 31);
+            this.CurrentEfficiencyLabel.TabIndex = 3;
+            this.CurrentEfficiencyLabel.Text = "0%";
+            // 
+            // SystemEfficiencyLabel
+            // 
+            this.SystemEfficiencyLabel.AutoSize = true;
+            this.SystemEfficiencyLabel.BackColor = System.Drawing.Color.YellowGreen;
+            this.SystemEfficiencyLabel.Font = new System.Drawing.Font("Tekton Pro Ext", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SystemEfficiencyLabel.Location = new System.Drawing.Point(84, 82);
+            this.SystemEfficiencyLabel.Name = "SystemEfficiencyLabel";
+            this.SystemEfficiencyLabel.Size = new System.Drawing.Size(310, 29);
+            this.SystemEfficiencyLabel.TabIndex = 2;
+            this.SystemEfficiencyLabel.Text = "Skuteczność systemu:";
+            // 
+            // CheckMatchweekButton
+            // 
+            this.CheckMatchweekButton.Location = new System.Drawing.Point(53, 164);
+            this.CheckMatchweekButton.Name = "CheckMatchweekButton";
+            this.CheckMatchweekButton.Size = new System.Drawing.Size(341, 48);
+            this.CheckMatchweekButton.TabIndex = 1;
+            this.CheckMatchweekButton.Text = "Sprawdź kolejkę piłkarską";
+            this.CheckMatchweekButton.UseVisualStyleBackColor = true;
+            this.CheckMatchweekButton.Click += new System.EventHandler(this.CheckMatchweekButton_Click);
             // 
             // OutputTextBox
             // 
@@ -191,16 +255,6 @@ namespace PredictiveSystemManagement
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.Size = new System.Drawing.Size(611, 153);
             this.OutputTextBox.TabIndex = 0;
-            // 
-            // CheckMatchweekButton
-            // 
-            this.CheckMatchweekButton.Location = new System.Drawing.Point(152, 122);
-            this.CheckMatchweekButton.Name = "CheckMatchweekButton";
-            this.CheckMatchweekButton.Size = new System.Drawing.Size(355, 48);
-            this.CheckMatchweekButton.TabIndex = 1;
-            this.CheckMatchweekButton.Text = "Sprawdź kolejkę piłkarską";
-            this.CheckMatchweekButton.UseVisualStyleBackColor = true;
-            this.CheckMatchweekButton.Click += new System.EventHandler(this.CheckMatchweekButton_Click);
             // 
             // MainForm
             // 
@@ -243,6 +297,10 @@ namespace PredictiveSystemManagement
         private ListBox FilesListBox;
         private TextBox OutputTextBox;
         private Button CheckMatchweekButton;
+        private Button GenerateReportButton;
+        private Label CompareEfficiencyLabel;
+        private Label CurrentEfficiencyLabel;
+        private Label SystemEfficiencyLabel;
     }
 }
 

@@ -62,6 +62,12 @@ namespace PredictiveSystemManagement
             //OutputTextBox
             public const int HeightOutputTextBoxMS = 150;
             public const int WidthOutputTextBoxMS = 600;
+
+        ///////////////////////////////////////////
+
+        public const string ReportFileName = "Report_";
+        public const string SystemPredictiveName = "<<nazwa_nazwa_nazwa>>";
+
         ///////////////////////////////////////////
     }
 }
