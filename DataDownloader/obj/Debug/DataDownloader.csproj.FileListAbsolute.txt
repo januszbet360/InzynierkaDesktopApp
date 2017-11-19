@@ -51,3 +51,14 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.csproj.CoreCompileInputs.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.dll
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.dll.config
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.MachineLearning.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.Math.Core.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.Math.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.Statistics.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.MachineLearning.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.Math.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.Math.Core.xml
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Accord.Statistics.xml

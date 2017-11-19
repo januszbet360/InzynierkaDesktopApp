@@ -37,3 +37,10 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.dll
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\FootballPredictor.Tests\obj\Debug\FootballPredictor.Tests.pdb
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.dll.config
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.Math.Core.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.Math.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.xml
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.Math.xml
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.Math.Core.xml

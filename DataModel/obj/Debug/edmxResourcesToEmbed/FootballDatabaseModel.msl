@@ -54,6 +54,14 @@
           <ScalarProperty Name="Referee" ColumnName="Referee" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="MatchId" ColumnName="MatchId" />
+          <ScalarProperty Name="HOR" ColumnName="HOR" />
+          <ScalarProperty Name="HDR" ColumnName="HDR" />
+          <ScalarProperty Name="AOR" ColumnName="AOR" />
+          <ScalarProperty Name="ADR" ColumnName="ADR" />
+          <ScalarProperty Name="HORH" ColumnName="HORH" />
+          <ScalarProperty Name="HDRH" ColumnName="HDRH" />
+          <ScalarProperty Name="AORA" ColumnName="AORA" />
+          <ScalarProperty Name="ADRA" ColumnName="ADRA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

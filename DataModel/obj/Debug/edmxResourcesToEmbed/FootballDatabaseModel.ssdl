@@ -52,6 +52,14 @@
     <Property Name="Referee" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="MatchId" Type="int" Nullable="false" />
+    <Property Name="HOR" Type="float" />
+    <Property Name="HDR" Type="float" />
+    <Property Name="AOR" Type="float" />
+    <Property Name="ADR" Type="float" />
+    <Property Name="HORH" Type="float" />
+    <Property Name="HDRH" Type="float" />
+    <Property Name="AORA" Type="float" />
+    <Property Name="ADRA" Type="float" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -72,7 +80,7 @@
     <Property Name="FullName" Type="nvarchar" MaxLength="100" />
     <Property Name="ImageURL" Type="nvarchar" MaxLength="300" />
   </EntityType>
-  <Association Name="FK__FullStati__TeamI__46E78A0C">
+  <Association Name="FK__FullStati__TeamI__68487DD7">
     <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
     <End Role="FullStatistics" Type="Self.FullStatistics" Multiplicity="*" />
     <ReferentialConstraint>
@@ -84,7 +92,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Matches__AwayId__412EB0B6">
+  <Association Name="FK__Matches__AwayId__628FA481">
     <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
     <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
     <ReferentialConstraint>
@@ -96,7 +104,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Matches__HomeId__403A8C7D">
+  <Association Name="FK__Matches__HomeId__619B8048">
     <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
     <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
     <ReferentialConstraint>
@@ -108,7 +116,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Scores__MatchId__440B1D61">
+  <Association Name="FK__Scores__MatchId__656C112C">
     <End Role="Matches" Type="Self.Matches" Multiplicity="1" />
     <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
     <ReferentialConstraint>
@@ -126,19 +134,19 @@
     <EntitySet Name="Scores" EntityType="Self.Scores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__FullStati__TeamI__46E78A0C" Association="Self.FK__FullStati__TeamI__46E78A0C">
+    <AssociationSet Name="FK__FullStati__TeamI__68487DD7" Association="Self.FK__FullStati__TeamI__68487DD7">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="FullStatistics" EntitySet="FullStatistics" />
     </AssociationSet>
-    <AssociationSet Name="FK__Matches__AwayId__412EB0B6" Association="Self.FK__Matches__AwayId__412EB0B6">
+    <AssociationSet Name="FK__Matches__AwayId__628FA481" Association="Self.FK__Matches__AwayId__628FA481">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="Matches" EntitySet="Matches" />
     </AssociationSet>
-    <AssociationSet Name="FK__Matches__HomeId__403A8C7D" Association="Self.FK__Matches__HomeId__403A8C7D">
+    <AssociationSet Name="FK__Matches__HomeId__619B8048" Association="Self.FK__Matches__HomeId__619B8048">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="Matches" EntitySet="Matches" />
     </AssociationSet>
-    <AssociationSet Name="FK__Scores__MatchId__440B1D61" Association="Self.FK__Scores__MatchId__440B1D61">
+    <AssociationSet Name="FK__Scores__MatchId__656C112C" Association="Self.FK__Scores__MatchId__656C112C">
       <End Role="Matches" EntitySet="Matches" />
       <End Role="Scores" EntitySet="Scores" />
     </AssociationSet>

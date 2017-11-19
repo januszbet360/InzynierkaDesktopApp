@@ -72,9 +72,11 @@
     <Compile Include="Match.cs">
       <DependentUpon>FootballDatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PredictionArchiveScoreModel.cs" />
     <Compile Include="Models\LeagueTableTeamModel.cs" />
     <Compile Include="Models\MatchModel.cs" />
     <Compile Include="Models\PredictedScoreModel.cs" />
+    <Compile Include="Models\RatioModel.cs" />
     <Compile Include="Models\ScoreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Score.cs">

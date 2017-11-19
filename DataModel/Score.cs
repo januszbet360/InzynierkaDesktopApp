@@ -34,6 +34,14 @@ namespace DataModel
         public string Referee { get; set; }
         public System.DateTime Date { get; set; }
         public int MatchId { get; set; }
+        public Nullable<double> HOR { get; set; }
+        public Nullable<double> HDR { get; set; }
+        public Nullable<double> AOR { get; set; }
+        public Nullable<double> ADR { get; set; }
+        public Nullable<double> HORH { get; set; }
+        public Nullable<double> HDRH { get; set; }
+        public Nullable<double> AORA { get; set; }
+        public Nullable<double> ADRA { get; set; }
     
         public virtual Match Match { get; set; }
     }

@@ -14,7 +14,7 @@ namespace DataDownloader
     public class ApiService
     {
         private ApiDownloader _api = new ApiDownloader();
-      
+
         public List<MatchModel> GetAllMatches()
         {
             var o = JObject.Parse(_api.GetAllFixturesJson());
@@ -34,16 +34,13 @@ namespace DataDownloader
             var jsonMatches = o["fixtures"].Children();
             foreach (var m in jsonMatches)
             {
-                if ((String)m["status"] == "SCHEDULED")
-                {
-                    var match = new MatchModel();
-                    match.Date = (DateTime)m["date"];
-                    match.HomeTeam = (String)m["homeTeamName"];
-                    match.AwayTeam = (String)m["awayTeamName"];
-                    match.Season = SeasonHelper.GetCurrentSeason(match.Date);
-                    match.Matchweek = (int)m["matchday"];
-                    matches.Add(match);
-                }
+                var match = new MatchModel();
+                match.Date = (DateTime)m["date"];
+                match.HomeTeam = (String)m["homeTeamName"];
+                match.AwayTeam = (String)m["awayTeamName"];
+                match.Season = SeasonHelper.GetCurrentSeason(match.Date);
+                match.Matchweek = (int)m["matchday"];
+                matches.Add(match);
             }
             return matches;
         }

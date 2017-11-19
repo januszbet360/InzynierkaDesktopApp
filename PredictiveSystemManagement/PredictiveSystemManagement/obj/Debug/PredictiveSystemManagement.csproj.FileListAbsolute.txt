@@ -89,3 +89,14 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.csproj.CoreCompileInputs.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.exe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.pdb
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.dll.config
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.MachineLearning.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.Statistics.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.Math.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.Math.Core.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.MachineLearning.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.Statistics.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.Math.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.xml
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\Accord.Math.Core.xml

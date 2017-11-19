@@ -18,7 +18,6 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\EntityFramework.xml
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_14_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
-E:\Projekty Visual Studio\FootballPredictor\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataModel\bin\Debug\DataModel.dll.config
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataModel\bin\Debug\DataModel.dll
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataModel\bin\Debug\DataModel.pdb

@@ -32,5 +32,12 @@ namespace FootballPredictor.Tests
             Assert.IsNotNull(t);
         }
 
+        [TestMethod]
+        public void GetLeagueId()
+        {
+            var id = _api.GetLeagueId();
+            Assert.AreEqual(id, 445);
+        }
+
     }
 }

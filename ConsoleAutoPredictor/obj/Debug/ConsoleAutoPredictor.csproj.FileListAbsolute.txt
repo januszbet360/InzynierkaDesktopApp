@@ -16,3 +16,14 @@ E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\obj\Debug\Conso
 E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\obj\Debug\ConsoleAutoPredictor.pdb
 E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\EntityFramework.SqlServer.dll
 E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.dll.config
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.MachineLearning.dll
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Statistics.dll
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Math.dll
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.dll
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Math.Core.dll
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.MachineLearning.xml
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Statistics.xml
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Math.xml
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.xml
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Math.Core.xml

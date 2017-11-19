@@ -14,7 +14,7 @@
     <Property Name="MatchesLost" Type="Int32" Nullable="false" />
     <Property Name="GoalsScored" Type="Int32" Nullable="false" />
     <Property Name="GoalsLost" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Team" Relationship="Self.FK__FullStati__TeamI__46E78A0C" FromRole="FullStatistics" ToRole="Teams" />
+    <NavigationProperty Name="Team" Relationship="Self.FK__FullStati__TeamI__68487DD7" FromRole="FullStatistics" ToRole="Teams" />
   </EntityType>
   <EntityType Name="Match">
     <Key>
@@ -28,9 +28,9 @@
     <Property Name="AwayGoalsPredicted" Type="Int32" />
     <Property Name="Season" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Matchweek" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Team" Relationship="Self.FK__Matches__AwayId__412EB0B6" FromRole="Matches" ToRole="Teams" />
-    <NavigationProperty Name="Team1" Relationship="Self.FK__Matches__HomeId__403A8C7D" FromRole="Matches" ToRole="Teams" />
-    <NavigationProperty Name="Scores" Relationship="Self.FK__Scores__MatchId__440B1D61" FromRole="Matches" ToRole="Scores" />
+    <NavigationProperty Name="Team" Relationship="Self.FK__Matches__AwayId__628FA481" FromRole="Matches" ToRole="Teams" />
+    <NavigationProperty Name="Team1" Relationship="Self.FK__Matches__HomeId__619B8048" FromRole="Matches" ToRole="Teams" />
+    <NavigationProperty Name="Scores" Relationship="Self.FK__Scores__MatchId__656C112C" FromRole="Matches" ToRole="Scores" />
   </EntityType>
   <EntityType Name="Score">
     <Key>
@@ -56,7 +56,15 @@
     <Property Name="Referee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="MatchId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Match" Relationship="Self.FK__Scores__MatchId__440B1D61" FromRole="Scores" ToRole="Matches" />
+    <Property Name="HOR" Type="Double" />
+    <Property Name="HDR" Type="Double" />
+    <Property Name="AOR" Type="Double" />
+    <Property Name="ADR" Type="Double" />
+    <Property Name="HORH" Type="Double" />
+    <Property Name="HDRH" Type="Double" />
+    <Property Name="AORA" Type="Double" />
+    <Property Name="ADRA" Type="Double" />
+    <NavigationProperty Name="Match" Relationship="Self.FK__Scores__MatchId__656C112C" FromRole="Scores" ToRole="Matches" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -76,11 +84,11 @@
     <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="ImageURL" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="FullStatistics" Relationship="Self.FK__FullStati__TeamI__46E78A0C" FromRole="Teams" ToRole="FullStatistics" />
-    <NavigationProperty Name="Matches" Relationship="Self.FK__Matches__AwayId__412EB0B6" FromRole="Teams" ToRole="Matches" />
-    <NavigationProperty Name="Matches1" Relationship="Self.FK__Matches__HomeId__403A8C7D" FromRole="Teams" ToRole="Matches" />
+    <NavigationProperty Name="FullStatistics" Relationship="Self.FK__FullStati__TeamI__68487DD7" FromRole="Teams" ToRole="FullStatistics" />
+    <NavigationProperty Name="Matches" Relationship="Self.FK__Matches__AwayId__628FA481" FromRole="Teams" ToRole="Matches" />
+    <NavigationProperty Name="Matches1" Relationship="Self.FK__Matches__HomeId__619B8048" FromRole="Teams" ToRole="Matches" />
   </EntityType>
-  <Association Name="FK__FullStati__TeamI__46E78A0C">
+  <Association Name="FK__FullStati__TeamI__68487DD7">
     <End Role="Teams" Type="Self.Team" Multiplicity="1" />
     <End Role="FullStatistics" Type="Self.FullStatistic" Multiplicity="*" />
     <ReferentialConstraint>
@@ -92,7 +100,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Matches__AwayId__412EB0B6">
+  <Association Name="FK__Matches__AwayId__628FA481">
     <End Role="Teams" Type="Self.Team" Multiplicity="1" />
     <End Role="Matches" Type="Self.Match" Multiplicity="*" />
     <ReferentialConstraint>
@@ -104,7 +112,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Matches__HomeId__403A8C7D">
+  <Association Name="FK__Matches__HomeId__619B8048">
     <End Role="Teams" Type="Self.Team" Multiplicity="1" />
     <End Role="Matches" Type="Self.Match" Multiplicity="*" />
     <ReferentialConstraint>
@@ -116,7 +124,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Scores__MatchId__440B1D61">
+  <Association Name="FK__Scores__MatchId__656C112C">
     <End Role="Matches" Type="Self.Match" Multiplicity="1" />
     <End Role="Scores" Type="Self.Score" Multiplicity="*" />
     <ReferentialConstraint>
@@ -134,19 +142,19 @@
     <EntitySet Name="Scores" EntityType="Self.Score" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Teams" EntityType="Self.Team" />
-    <AssociationSet Name="FK__FullStati__TeamI__46E78A0C" Association="Self.FK__FullStati__TeamI__46E78A0C">
+    <AssociationSet Name="FK__FullStati__TeamI__68487DD7" Association="Self.FK__FullStati__TeamI__68487DD7">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="FullStatistics" EntitySet="FullStatistics" />
     </AssociationSet>
-    <AssociationSet Name="FK__Matches__AwayId__412EB0B6" Association="Self.FK__Matches__AwayId__412EB0B6">
+    <AssociationSet Name="FK__Matches__AwayId__628FA481" Association="Self.FK__Matches__AwayId__628FA481">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="Matches" EntitySet="Matches" />
     </AssociationSet>
-    <AssociationSet Name="FK__Matches__HomeId__403A8C7D" Association="Self.FK__Matches__HomeId__403A8C7D">
+    <AssociationSet Name="FK__Matches__HomeId__619B8048" Association="Self.FK__Matches__HomeId__619B8048">
       <End Role="Teams" EntitySet="Teams" />
       <End Role="Matches" EntitySet="Matches" />
     </AssociationSet>
-    <AssociationSet Name="FK__Scores__MatchId__440B1D61" Association="Self.FK__Scores__MatchId__440B1D61">
+    <AssociationSet Name="FK__Scores__MatchId__656C112C" Association="Self.FK__Scores__MatchId__656C112C">
       <End Role="Matches" EntitySet="Matches" />
       <End Role="Scores" EntitySet="Scores" />
     </AssociationSet>
