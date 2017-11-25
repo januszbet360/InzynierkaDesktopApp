@@ -81,6 +81,7 @@ namespace DataDownloader.Prediction
                 return ctx.Matches.Where(m => m.Date >= start && m.Date <= end).ToList();
             }
         }
+        
 
     }
 }

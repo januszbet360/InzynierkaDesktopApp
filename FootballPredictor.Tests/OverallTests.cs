@@ -36,7 +36,7 @@ namespace FootballPredictor.Tests
 
             ApiService aps = new ApiService();
             aps.InsertAllMatches();
-            csvs.InsertScores("17-18.csv");
+            csvs.InsertScores("DebugCurrentScores.csv");
         }
 
         public void ClearDatabase()

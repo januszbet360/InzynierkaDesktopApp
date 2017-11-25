@@ -72,6 +72,16 @@ namespace FootballPredictor.Tests.Prediction
             Assert.IsTrue(score.HOR > 1.0);
         }
 
+        [TestMethod]
+        public void GetPreviousRatio()
+        {
+            var ort = _rc.GetTeamRatio(1, DateTime.Now, true); // Arsenal offensive
+            var drt = _rc.GetTeamRatio(1, DateTime.Now, false); // Arsenal defensive
+
+            Assert.IsTrue(ort == 0.0);
+            Assert.IsTrue(drt == 0.0);
+        }
+
 
     }
 }

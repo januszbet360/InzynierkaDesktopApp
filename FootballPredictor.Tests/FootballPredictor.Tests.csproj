@@ -77,6 +77,7 @@
     <Compile Include="ApiServiceTests.cs" />
     <Compile Include="MatchdayTests.cs" />
     <Compile Include="OverallTests.cs" />
+    <Compile Include="Prediction\EffectivenessTests.cs" />
     <Compile Include="Prediction\PredictingMachineTests.cs" />
     <Compile Include="Prediction\PredictorTests.cs" />
     <Compile Include="Prediction\RatioCalculatorTests.cs" />

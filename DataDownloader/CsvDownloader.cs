@@ -32,6 +32,11 @@ namespace DataDownloader
                 string path = dir + Constants.CSV_CURRENT_FILE_NAME;
                 string season = SeasonHelper.GetCurrentSeasonShort(date);
 
+                if (File.Exists(Constants.CSV_CURRENT_FILE_NAME))
+                {
+                    File.Delete(Constants.CSV_CURRENT_FILE_NAME);
+                }
+
                 client.DownloadFile(@"http://www.football-data.co.uk/mmz4281/" + season + @"/E0.csv", path);
 
                 return path;

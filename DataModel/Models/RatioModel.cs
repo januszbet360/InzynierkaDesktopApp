@@ -16,6 +16,5 @@ namespace DataModel.Models
         public double HDRH { get; set; }
         public double AORA { get; set; }
         public double ADRA { get; set; }
-
     }
 }

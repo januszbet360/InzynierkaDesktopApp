@@ -16,9 +16,9 @@ namespace DataDownloader.Prediction
         public static readonly double DEFENSIVE_RATIO_DEFAULT = 1.0;
 
         public static readonly double GOALS_WEIGHT = 3.0;
-        public static readonly double SHOTS_WEIGHT = 0.1;
-        public static readonly double SHOTS_ON_TARGET_WEIGHT = 0.1;
-        public static readonly double OPPONENT_RATIO_WEIGHT = 0.2;
+        public static readonly double SHOTS_WEIGHT = 0.2;
+        public static readonly double SHOTS_ON_TARGET_WEIGHT = 0.5;
+        public static readonly double RED_CARDS_WEIGHT = 0.3;
         public static readonly double WEIGHTS_SUM = GOALS_WEIGHT + SHOTS_WEIGHT + SHOTS_ON_TARGET_WEIGHT;
 
         public RatioModel CalculateTeamsRatio(string home, string away)
@@ -75,7 +75,7 @@ namespace DataDownloader.Prediction
 
         public double CalculateOffensiveRatio(IDictionary<Score, bool> scores)
         {
-            double GoalsSum = 0.0, ShotsSum = 0.0, OnTargetSum = 0.0;
+            double GoalsSum = 0.0, ShotsSum = 0.0, OnTargetSum = 0.0, OpponentRatio = 0.0;
 
             foreach (KeyValuePair<Score, bool> s in scores)
             {
@@ -84,18 +84,20 @@ namespace DataDownloader.Prediction
                     GoalsSum += s.Key.HomeGoals * GOALS_WEIGHT;
                     ShotsSum += s.Key.HomeShots * SHOTS_WEIGHT;
                     OnTargetSum += s.Key.HomeShotsOnTarget * SHOTS_ON_TARGET_WEIGHT;
+                    //OpponentRatio = GetTeamRatio(GetTeamIdFromScore(s.Key, true), s.Key.Date, true) * OPPONENT_RATIO_WEIGHT;
                 }
                 else
                 {
                     GoalsSum += s.Key.AwayGoals * GOALS_WEIGHT;
                     ShotsSum += s.Key.AwayShots * SHOTS_WEIGHT;
                     OnTargetSum += s.Key.AwayShotsOnTarget * SHOTS_ON_TARGET_WEIGHT;
+                    //OpponentRatio = GetTeamRatio(GetTeamIdFromScore(s.Key, false), s.Key.Date, true) * OPPONENT_RATIO_WEIGHT;
                 }
             }
             if (scores.Count == MAX_ARCHIVE_HOME_SCORES_NO || scores.Count == MAX_ARCHIVE_SCORES_NO)
-                return (GoalsSum + ShotsSum + OnTargetSum) / (WEIGHTS_SUM * scores.Count);
+                return (GoalsSum + ShotsSum + OnTargetSum - OpponentRatio) / (WEIGHTS_SUM * scores.Count);
             else if (scores.Count != 0)
-                return ((GoalsSum + ShotsSum + OnTargetSum) / (WEIGHTS_SUM * scores.Count) + OFFENSIVE_RATIO_DEFAULT) / 2;
+                return ((GoalsSum + ShotsSum + OnTargetSum - OpponentRatio) / (WEIGHTS_SUM * scores.Count) + OFFENSIVE_RATIO_DEFAULT) / 2;
             else
                 return OFFENSIVE_RATIO_DEFAULT;
 
@@ -103,7 +105,7 @@ namespace DataDownloader.Prediction
 
         public double CalculateDefensiveRatio(IDictionary<Score, bool> scores)
         {
-            double GoalsSum = 0.0, ShotsSum = 0.0, OnTargetSum = 0.0;
+            double GoalsSum = 0.0, ShotsSum = 0.0, OnTargetSum = 0.0, RedCardsSum = 0.0, OpponentRatio = 0.0;
 
             foreach (KeyValuePair<Score, bool> s in scores)
             {
@@ -112,18 +114,23 @@ namespace DataDownloader.Prediction
                     GoalsSum += s.Key.AwayGoals * GOALS_WEIGHT;
                     ShotsSum += s.Key.AwayShots * SHOTS_WEIGHT;
                     OnTargetSum += s.Key.AwayShotsOnTarget * SHOTS_ON_TARGET_WEIGHT;
+                    RedCardsSum += s.Key.HomeRedCards * RED_CARDS_WEIGHT;
+                    //OpponentRatio = GetTeamRatio(GetTeamIdFromScore(s.Key, true), s.Key.Date, false) * OPPONENT_RATIO_WEIGHT;
                 }
                 else
                 {
                     GoalsSum += s.Key.HomeGoals * GOALS_WEIGHT;
                     ShotsSum += s.Key.HomeShots * SHOTS_WEIGHT;
                     OnTargetSum += s.Key.HomeShotsOnTarget * SHOTS_ON_TARGET_WEIGHT;
+                    RedCardsSum += s.Key.AwayRedCards * RED_CARDS_WEIGHT;
+                    //OpponentRatio = GetTeamRatio(GetTeamIdFromScore(s.Key, false), s.Key.Date, false) * OPPONENT_RATIO_WEIGHT;
                 }
             }
+
             if (scores.Count == MAX_ARCHIVE_HOME_SCORES_NO || scores.Count == MAX_ARCHIVE_SCORES_NO)
-                return (GoalsSum + ShotsSum + OnTargetSum) / (WEIGHTS_SUM * scores.Count);
+                return (GoalsSum + ShotsSum + OnTargetSum - RedCardsSum - OpponentRatio) / (WEIGHTS_SUM * scores.Count);
             else if (scores.Count != 0)
-                return ((GoalsSum + ShotsSum + OnTargetSum) / (WEIGHTS_SUM * scores.Count) + DEFENSIVE_RATIO_DEFAULT) / 2;
+                return ((GoalsSum + ShotsSum + OnTargetSum - RedCardsSum - OpponentRatio) / (WEIGHTS_SUM * scores.Count) + DEFENSIVE_RATIO_DEFAULT) / 2;
             else
                 return DEFENSIVE_RATIO_DEFAULT;
 
@@ -205,6 +212,70 @@ namespace DataDownloader.Prediction
         public IDictionary<Score, bool> GetArchiveScores(string teamName, bool isHome)
         {
             return GetArchiveScores(teamName, isHome, DateTime.Now);
+        }
+
+        public double GetTeamRatio(int teamId, DateTime date, bool isOffensive)
+        {
+            using (var ctx = new FootballEntities())
+            {
+
+                var match = ctx.Matches.Where(m => m.Date < date && (m.HomeId == teamId || m.AwayId == teamId))
+                    .OrderByDescending(d => d.Date)
+                    .FirstOrDefault();
+
+                if (match == null)
+                {
+                    if (isOffensive)
+                        return DEFENSIVE_RATIO_DEFAULT;
+                    else
+                        return OFFENSIVE_RATIO_DEFAULT;
+                }
+
+
+                var score = ctx.Scores.FirstOrDefault(s => s.MatchId == match.Id);
+
+                if (score.HDR == null)
+                    return 0.0;
+
+                if (isOffensive)
+                {
+                    if (match.HomeId == teamId)
+                    {
+                        return (double)score.ADR;
+                    }
+                    else
+                    {
+                        return (double)score.HDR;
+                    }
+                }
+                else
+                {
+                    if (match.HomeId == teamId)
+                    {
+                        return (double)score.AOR;
+                    }
+                    else
+                    {
+                        return (double)score.HOR;
+                    }
+                }
+            }
+        }
+
+        public int GetTeamIdFromScore(Score s, bool isHome)
+        {
+            using (var ctx = new FootballEntities())
+            {
+                var match = ctx.Matches.FirstOrDefault(m => m.Id == s.MatchId);
+                if (isHome)
+                {
+                    return match.HomeId;
+                }
+                else
+                {
+                    return match.AwayId;
+                }
+            }
         }
     }
 }

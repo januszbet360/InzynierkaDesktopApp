@@ -29,3 +29,4 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.csproj.CoreCompileInputs.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.dll
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_21_10\InzynierkaDesktopApp\DataModel\obj\Debug\DataModel.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
