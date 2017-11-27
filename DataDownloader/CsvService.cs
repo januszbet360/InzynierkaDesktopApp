@@ -33,7 +33,6 @@ namespace DataDownloader
             {
                 using (CsvReader csv = new CsvReader(reader))
                 {
-                    int asd = 1;
                     try
                     {
                         while (csv.Read())
