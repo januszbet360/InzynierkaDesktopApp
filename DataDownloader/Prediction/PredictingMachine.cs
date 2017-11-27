@@ -71,8 +71,7 @@ namespace DataDownloader.Prediction
         public Tuple<int, int> PredictScore(RatioModel ratio)
         {
             var input = new double[] { ratio.HOR, ratio.HDR, ratio.AOR,
-                ratio.ADR, ratio.HORH, ratio.HDRH, ratio.AORA,
-                ratio.ADRA };
+                ratio.ADR, ratio.HORH, ratio.HDRH, ratio.AORA, ratio.ADRA };
 
             //double[] input = Codebook.Translate(query.ToArray()).ToDouble();
             int result = Predictor.Decide(input);

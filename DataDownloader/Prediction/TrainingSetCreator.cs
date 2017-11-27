@@ -121,4 +121,3 @@ namespace DataDownloader.Prediction
         }
     }
 }
-

@@ -27,7 +27,7 @@ namespace DataDownloader.Prediction
                 string home = ctx.Teams.First(t => t.Id == matchDb.HomeId).Name;
                 string away = ctx.Teams.First(t => t.Id == matchDb.AwayId).Name;
 
-                RatioModel ratio = Calculator.CalculateTeamsRatio(home,away,match.Date);
+                RatioModel ratio = Calculator.CalculateTeamsRatio(home, away, match.Date);
 
                 var res = Machine.PredictScore(ratio);
 
@@ -56,9 +56,9 @@ namespace DataDownloader.Prediction
             return Predict(GetMatchesForMatchweek(season, matchweek));
         }
 
-        public List<Match> Predict(DateTime endDate)
+        public List<Match> Predict(DateTime startDate)
         {
-            return Predict(GetMatchesBetweenDates(DateTime.Now, endDate));
+            return Predict(GetMatchesBetweenDates(startDate, DateTime.Now));
         }
 
         public List<Match> Predict(DateTime start, DateTime end)
@@ -81,7 +81,5 @@ namespace DataDownloader.Prediction
                 return ctx.Matches.Where(m => m.Date >= start && m.Date <= end).ToList();
             }
         }
-        
-
     }
 }

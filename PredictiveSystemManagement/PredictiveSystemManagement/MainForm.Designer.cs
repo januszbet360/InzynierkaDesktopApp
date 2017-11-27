@@ -32,7 +32,6 @@ namespace PredictiveSystemManagement
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LogoPanel = new System.Windows.Forms.Panel();
-            this.LogoPictureBox = new System.Windows.Forms.PictureBox();
             this.HistoricalDataPanel = new System.Windows.Forms.Panel();
             this.HistoricalDataGroupBox = new System.Windows.Forms.GroupBox();
             this.FilesListBox = new System.Windows.Forms.ListBox();
@@ -48,12 +47,13 @@ namespace PredictiveSystemManagement
             this.SystemEfficiencyLabel = new System.Windows.Forms.Label();
             this.CheckMatchweekButton = new System.Windows.Forms.Button();
             this.OutputTextBox = new System.Windows.Forms.TextBox();
+            this.LogoPictureBox = new System.Windows.Forms.PictureBox();
             this.LogoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.HistoricalDataPanel.SuspendLayout();
             this.HistoricalDataGroupBox.SuspendLayout();
             this.ManagementSystemPanel.SuspendLayout();
             this.ManagementSystemGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // LogoPanel
@@ -64,18 +64,6 @@ namespace PredictiveSystemManagement
             this.LogoPanel.Name = "LogoPanel";
             this.LogoPanel.Size = new System.Drawing.Size(1000, 150);
             this.LogoPanel.TabIndex = 0;
-            // 
-            // LogoPictureBox
-            // 
-            this.LogoPictureBox.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.LogoPictureBox.BackgroundImage = global::PredictiveSystemManagement.Properties.Resources.Stadium;
-            this.LogoPictureBox.Image = global::PredictiveSystemManagement.Properties.Resources.Logo;
-            this.LogoPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.LogoPictureBox.Name = "LogoPictureBox";
-            this.LogoPictureBox.Size = new System.Drawing.Size(1000, 150);
-            this.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.LogoPictureBox.TabIndex = 0;
-            this.LogoPictureBox.TabStop = false;
             // 
             // HistoricalDataPanel
             // 
@@ -256,6 +244,17 @@ namespace PredictiveSystemManagement
             this.OutputTextBox.Size = new System.Drawing.Size(611, 153);
             this.OutputTextBox.TabIndex = 0;
             // 
+            // LogoPictureBox
+            // 
+            this.LogoPictureBox.BackColor = System.Drawing.Color.DimGray;
+            this.LogoPictureBox.Image = global::PredictiveSystemManagement.Properties.Resources.prescores_logo;
+            this.LogoPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.LogoPictureBox.Name = "LogoPictureBox";
+            this.LogoPictureBox.Size = new System.Drawing.Size(1000, 150);
+            this.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LogoPictureBox.TabIndex = 0;
+            this.LogoPictureBox.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,13 +270,13 @@ namespace PredictiveSystemManagement
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Predictive System Management";
             this.LogoPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.HistoricalDataPanel.ResumeLayout(false);
             this.HistoricalDataGroupBox.ResumeLayout(false);
             this.HistoricalDataGroupBox.PerformLayout();
             this.ManagementSystemPanel.ResumeLayout(false);
             this.ManagementSystemGroupBox.ResumeLayout(false);
             this.ManagementSystemGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -35,6 +35,8 @@ namespace PredictiveSystemManagement
                     {
                         string currentSeason = DataDownloader.SeasonHelper.GetCurrentSeason(currentDate);
                         double currentEffectiveness = new DataDownloader.ScoreEffectivenessService().Compute(currentSeason) * 100.0;
+                        double currentEffectivenessWeighted = new DataDownloader.ScoreEffectivenessService().ComputeWeighted(currentSeason) * 100.0;
+
                         if (currentEffectiveness > bestEffectiveness)
                         {
                             bestEffectiveness = currentEffectiveness;
@@ -48,20 +50,25 @@ namespace PredictiveSystemManagement
                             continue;
                         }
 
-                        textOfReport += String.Format("\n\n\t Skuteczność predykcji sezonu {0}: {1}%", 
-                            currentSeason, Math.Round(currentEffectiveness, 2));
+                        textOfReport += String.Format("\n\n\t Skuteczność predykcji sezonu {0}: {1}% ({2}%)", 
+                            currentSeason, Math.Round(currentEffectiveness, 2), Math.Round(currentEffectivenessWeighted, 2));
 
                         for (int currentMachweek = 1; currentMachweek <= 38; currentMachweek++)
                         {
                             try
                             {
                                 double currentMatchweekEffectiveness = new DataDownloader.ScoreEffectivenessService().Compute(currentMachweek, currentSeason) * 100.0;
+                                double currentMatchweekEffectivenessWeighted = new DataDownloader.ScoreEffectivenessService().ComputeWeighted(currentMachweek, currentSeason) * 10.0;
+
                                 if (currentMatchweekEffectiveness == 0.0)
                                 {
-                                    break;
+                                    textOfReport += String.Format("\n\t\t- kolejka {0}: - -", currentMachweek);
                                 }
-                                textOfReport += String.Format("\n\t\t- kolejka {0}: {1}%", 
-                                    currentMachweek, Math.Round(currentMatchweekEffectiveness, 2));
+                                else
+                                {
+                                    textOfReport += String.Format("\n\t\t- kolejka {0}: {1}% ({2})",
+                                        currentMachweek, Math.Round(currentMatchweekEffectiveness, 2), Math.Round(currentMatchweekEffectivenessWeighted, 2));
+                                }
                             }
                             catch (Exception)
                             {
@@ -84,7 +91,7 @@ namespace PredictiveSystemManagement
                 String.Format("\n\t Najlepsza skuteczność predykcji wystąpiła w sezonie {0}: {1}%", bestSeason, Math.Round(bestEffectiveness, 2)) +
                 "\n" +
                 "\n" + separateLine +
-                String.Format("\n********************* Copyrights (C) 2017 {0} **********************",
+                String.Format("\n************************** Copyrights (C) 2017 {0} ****************************",
                     Constants.SystemPredictiveName) +
                 "\n" + separateLine + "\n";
                 

@@ -35,8 +35,14 @@ namespace PredictiveSystemManagement
                 Log("Tabela zespołów jest aktualna.");
             }
 
+            // Should be run only one time
+            // PredictiveScoresForPast();
+
             // Set current effectiveness
             SetEffectiveness();
+
+            // Insert matche if matche is not in DB
+            CheckPlanOfMatches();
         }
 
         private void SetAppearance()
@@ -130,7 +136,7 @@ namespace PredictiveSystemManagement
             {
                 // Update of CSV
                 new CsvDownloader().GetScoresCsv(DateTime.Now);
-                Log("Zaktualizowane plik z danymi.");
+                Log("Zaktualizowano plik z danymi.");
 
                 string csvPath = Path.Combine(Application.StartupPath, DataDownloader.Constants.CSV_CURRENT_FILE_NAME);
                 ProcessCsvFile(csvPath);
@@ -184,6 +190,35 @@ namespace PredictiveSystemManagement
             {  }
         }
 
+        private void CheckPlanOfMatches()
+        {
+            try
+            {
+                int count = new ApiService().InsertAllMatches();
+                if (count != 0)
+                {
+                    Log("Pomyślnie zaktualizowano terminarz dla " + count.ToString() + " zaplanowanych spotkań.");
+                }
+                else
+                {
+                    Log("Terminarz spotkań piłkarskich jest aktualny.");
+                }
+            }
+            catch(Exception)
+            {
+                Log("Błąd podczas pobierania terminarza spotkań.");
+            }
+        }
+
+        private void PredictiveScoresForFuture()
+        {
+            new DataDownloader.Prediction.Predictor().Predict(DateTime.Now, DateTime.Now.AddYears(1));
+        }
+
+        private void PredictiveScoresForPast()
+        {
+            new DataDownloader.Prediction.Predictor().Predict(DateTime.Now.AddYears(-100));
+        }
 
         private void AddFileButton_Click(object sender, EventArgs e)
         {
@@ -248,6 +283,7 @@ namespace PredictiveSystemManagement
         private void CheckMatchweekButton_Click(object sender, EventArgs e)
         {
             CheckMatchweek();
+            PredictiveScoresForFuture();
             SetEffectiveness();
         }
 

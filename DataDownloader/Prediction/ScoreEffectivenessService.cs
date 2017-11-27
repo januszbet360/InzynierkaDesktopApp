@@ -9,7 +9,7 @@ namespace DataDownloader
 {
     public class ScoreEffectivenessService
     {
-        public const double WINNER_RATIO = 0.8;
+        public const double WINNER_RATIO = 0.0;
         public const double EXACT_SCORE_RATIO = 1 - WINNER_RATIO;
 
         public enum Winner { Home, Away, Draw };

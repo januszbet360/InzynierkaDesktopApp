@@ -67,10 +67,20 @@ namespace DataDownloader
                 {
                     try
                     {
-                        foreach (var m in matches)
+                        foreach (var match in matches)
                         {
-                            ctx.Matches.Add(m.ToDbObject());
-                            counter++;
+                            var hID = ctx.Teams.FirstOrDefault(t => t.FullName == match.HomeTeam).Id;
+                            var aID = ctx.Teams.FirstOrDefault(t => t.FullName == match.AwayTeam).Id;
+                            
+                            if (ctx.Matches.Any(m => m.HomeId == hID && m.AwayId == aID && m.Season == match.Season))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                ctx.Matches.Add(match.ToDbObject());
+                                counter++;
+                            }
                         }
 
                         ctx.SaveChanges();

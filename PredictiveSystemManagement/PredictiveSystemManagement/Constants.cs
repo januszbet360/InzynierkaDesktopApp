@@ -66,7 +66,7 @@ namespace PredictiveSystemManagement
         ///////////////////////////////////////////
 
         public const string ReportFileName = "Report_";
-        public const string SystemPredictiveName = "<<nazwa_nazwa_nazwa>>";
+        public const string SystemPredictiveName = "PRE-SCORES";
 
         ///////////////////////////////////////////
     }
