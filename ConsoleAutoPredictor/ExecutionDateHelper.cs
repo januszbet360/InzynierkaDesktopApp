@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace ConsoleAutoPredictor
 {
-    public class ExecutionDateHelper
-    {
-        public readonly string FILENAME = "exec.data";
+    public static class ExecutionDateHelper
+    {        
+        public static readonly string FILENAME = "exec.data";
 
-        public void WriteExecutionDate()
+        // TODO - change it to DateTime min value before deploying
+        public static readonly DateTime DEFAULT_LAST_DATE = DateTime.Now.AddDays(-7);
+
+        public static void SetExecutionDate()
         {
             using (var sw = new StreamWriter(FILENAME, false))
             {
@@ -19,21 +22,25 @@ namespace ConsoleAutoPredictor
             }
         }
 
-        public DateTime GetLastExecutionDate()
+        public static DateTime GetLastExecutionDate()
         {
             if (File.Exists(FILENAME))
             {
                 using (var sr = new StreamReader(FILENAME, false))
                 {
                     var strDate = sr.ReadLine();
+                    DateTime date;
                     Console.WriteLine("Last execution date: {0}", strDate);
-                    return DateTime.Parse(strDate);
+                    if (DateTime.TryParse(strDate, out date))
+                        return DateTime.Parse(strDate);
+                    else
+                        return DEFAULT_LAST_DATE;
                 }
             }
             else
             {
                 Console.WriteLine("File {0} not found. All scores will be imported", FILENAME);
-                return new DateTime(1990, 1, 1);
+                return DEFAULT_LAST_DATE;
             }
         }
     }
