@@ -65,7 +65,7 @@ namespace DataDownloader.Prediction
         {
             return Predict(GetMatchesBetweenDates(start, end));
         }
-
+        
         protected List<Match> GetMatchesForMatchweek(string season, int matchweek)
         {
             using (var ctx = new FootballEntities())

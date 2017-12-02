@@ -46,5 +46,13 @@ namespace DataDownloader
             return currentSeason.ToString();
         }
 
+        public static string GetNextSeason(string season)
+        {
+            int first = int.Parse(season.Substring(0,4)) + 1;
+            int second = int.Parse(season.Substring(5, 4)) + 1;
+
+            return first + "/" + second;
+        }
+
     }
 }

@@ -1,0 +1,59 @@
+2017-12-03 00:33:57,532 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:33:01
+2017-12-03 00:33:57,791 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 00:33:57,968 INFO  0 score records have been added to database
+2017-12-03 00:33:59,243 INFO  Prediction will be run for matchweek 17 of season 2017/2018
+2017-12-03 00:34:01,067 INFO  Prediction finished successfully
+2017-12-03 00:34:01,073 INFO  Date 03.12.2017 00:34:01 has been set as last execution date to file: exec.data
+2017-12-03 00:34:01,085 INFO  Bye
+2017-12-03 00:35:42,976 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
+2017-12-03 00:35:43,389 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 00:35:43,678 INFO  0 score records have been added to database
+2017-12-03 00:36:06,703 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
+2017-12-03 00:36:07,341 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 00:36:07,857 INFO  0 score records have been added to database
+2017-12-03 00:36:25,235 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
+2017-12-03 00:36:25,724 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 00:36:26,441 INFO  0 score records have been added to database
+2017-12-03 00:39:19,865 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
+2017-12-03 00:39:20,165 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 00:39:20,341 INFO  0 score records have been added to database
+2017-12-03 00:39:21,763 ERROR Error while predicting.
+System.NotSupportedException: The specified type member 'Date' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MemberAccessTranslator.TypedTranslate(ExpressionConverter parent, MemberExpression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.FirstPredicateTranslatorBase.Translate(ExpressionConverter parent, MethodCallExpression call)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   w System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   w System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   w System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   w System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   w System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   w System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   w System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   w System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   w System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   w System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   w System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   w System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   w System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   w System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   w DataDownloader.MatchweekService.GetCurrentMatchweek() w E:\Projekty Visual Studio\FootballPredictor\DataDownloader\MatchweekService.cs:wiersz 16
+   w ConsoleAutoPredictor.Program.Main(String[] args) w E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\Program.cs:wiersz 69
+2017-12-03 00:41:47,254 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
+2017-12-03 00:41:47,558 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 00:41:47,770 INFO  0 score records have been added to database
+2017-12-03 00:41:49,283 INFO  Prediction will be run for matchweek 16 of season 2017/2018
+2017-12-03 00:41:51,234 INFO  Prediction finished successfully
+2017-12-03 00:41:51,246 INFO  Date 03.12.2017 00:41:51 has been set as last execution date to file: exec.data
+2017-12-03 00:41:51,260 INFO  Bye

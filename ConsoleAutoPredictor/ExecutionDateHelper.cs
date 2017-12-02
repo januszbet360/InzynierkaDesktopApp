@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,10 @@ using System.Threading.Tasks;
 namespace ConsoleAutoPredictor
 {
     public static class ExecutionDateHelper
-    {        
+    {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(ExecutionDateHelper));
+
+
         public static readonly string FILENAME = "exec.data";
 
         // TODO - change it to DateTime min value before deploying
@@ -18,7 +22,9 @@ namespace ConsoleAutoPredictor
         {
             using (var sw = new StreamWriter(FILENAME, false))
             {
-                sw.Write(DateTime.Now);
+                var d = DateTime.Now;
+                sw.Write(d);
+                logger.Info(string.Format("Date {0} has been set as last execution date to file: {1}", d, FILENAME));
             }
         }
 
@@ -32,14 +38,21 @@ namespace ConsoleAutoPredictor
                     DateTime date;
                     Console.WriteLine("Last execution date: {0}", strDate);
                     if (DateTime.TryParse(strDate, out date))
+                    {
+                        logger.Info("Method GetLastExecutionDate is returning: " + strDate);
                         return DateTime.Parse(strDate);
+                    }
                     else
+                    {
+                        logger.Info("Method GetLastExecutionDate is returning: " + DEFAULT_LAST_DATE);
                         return DEFAULT_LAST_DATE;
+                    }
                 }
             }
             else
             {
                 Console.WriteLine("File {0} not found. All scores will be imported", FILENAME);
+                logger.Warn("Last execution date file not found. All scores are going to be imported to database");
                 return DEFAULT_LAST_DATE;
             }
         }

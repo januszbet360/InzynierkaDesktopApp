@@ -91,3 +91,5 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.csproj.CoreCompileInputs.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.dll
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\log4net.dll
+E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\log4net.xml

@@ -27,3 +27,5 @@ E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accor
 E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Math.xml
 E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.xml
 E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\Accord.Math.Core.xml
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\log4net.dll
+E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\log4net.xml
