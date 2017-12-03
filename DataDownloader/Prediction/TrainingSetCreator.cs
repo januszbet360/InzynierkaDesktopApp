@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using DataModel;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,11 +13,12 @@ namespace DataDownloader.Prediction
 {
     public class TrainingSetCreator
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(TrainingSetCreator));
+
         public static readonly int TRAINING_SET_CARDINALITY = 500;
 
         public static readonly string[] INPUT_COLUMNS = { "HOR", "HDR", "AOR", "ADR", "HORH", "HDRH",
             "AORA", "ADRA" };
-
 
         public List<Score> GetTrainingScores()
         {
@@ -25,44 +27,61 @@ namespace DataDownloader.Prediction
 
         public List<Score> GetTrainingScores(string season, int matchweek)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-                var last = ctx.Matches.FirstOrDefault(m => m.Matchweek == matchweek && m.Season == season);
+                using (var ctx = new FootballEntities())
+                {
+                    var last = ctx.Matches.FirstOrDefault(m => m.Matchweek == matchweek && m.Season == season);
 
-                if (last != null)
-                {
-                    return GetTrainingScores(last.Date);
+                    if (last != null)
+                    {
+                        return GetTrainingScores(last.Date);
+                    }
+                    else
+                    {
+                        return GetTrainingScores();
+                    }
                 }
-                else
-                {
-                    return GetTrainingScores();
-                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(string.Format("GetTrainingScores (season = {0}, matchweek = {1}) failed due to exception", season, matchweek), e);
+                return null;
             }
 
         }
 
         public List<Score> GetTrainingScores(DateTime date)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-                var result = new List<Score>();
-                var dbScores = ctx.Scores
-                    .Where(s => s.Date < date)
-                    .OrderByDescending(s => s.Date)
-                    .Take(TRAINING_SET_CARDINALITY);
-
-                RatioCalculator rc = new RatioCalculator();
-
-                foreach (var s in dbScores)
+                using (var ctx = new FootballEntities())
                 {
-                    if (s.HOR == null)
+                    var result = new List<Score>();
+                    var dbScores = ctx.Scores
+                        .Where(s => s.Date < date)
+                        .OrderByDescending(s => s.Date)
+                        .Take(TRAINING_SET_CARDINALITY);
+
+                    RatioCalculator rc = new RatioCalculator();
+
+                    foreach (var s in dbScores)
                     {
-                        result.Add(rc.SetRatio(s));
+                        if (s.HOR == null)
+                        {
+                            result.Add(rc.SetRatio(s));
+                        }
+                        else
+                            result.Add(s);
                     }
-                    else
-                        result.Add(s);
+                    logger.InfoFormat("Training scores set (before date: {0}) have been created successfully. Training scores count = {1}", date, result.Count);
+                    return result;
                 }
-                return result;
+            }
+            catch (Exception e)
+            {
+                logger.Error(string.Format("GetTrainingScores (date = {0}) failed due to exception", date), e);
+                return null;
             }
         }
 
@@ -117,6 +136,7 @@ namespace DataDownloader.Prediction
                 counter++;
             }
 
+            logger.InfoFormat("Scores dictionary created successfully. Dictionary count = {0}", dict.Count);
             return dict;
         }
     }

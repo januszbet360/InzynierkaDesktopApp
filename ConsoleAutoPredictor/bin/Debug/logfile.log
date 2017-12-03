@@ -1,59 +1,59 @@
-2017-12-03 00:33:57,532 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:33:01
-2017-12-03 00:33:57,791 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
-2017-12-03 00:33:57,968 INFO  0 score records have been added to database
-2017-12-03 00:33:59,243 INFO  Prediction will be run for matchweek 17 of season 2017/2018
-2017-12-03 00:34:01,067 INFO  Prediction finished successfully
-2017-12-03 00:34:01,073 INFO  Date 03.12.2017 00:34:01 has been set as last execution date to file: exec.data
-2017-12-03 00:34:01,085 INFO  Bye
-2017-12-03 00:35:42,976 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
-2017-12-03 00:35:43,389 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
-2017-12-03 00:35:43,678 INFO  0 score records have been added to database
-2017-12-03 00:36:06,703 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
-2017-12-03 00:36:07,341 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
-2017-12-03 00:36:07,857 INFO  0 score records have been added to database
-2017-12-03 00:36:25,235 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
-2017-12-03 00:36:25,724 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
-2017-12-03 00:36:26,441 INFO  0 score records have been added to database
-2017-12-03 00:39:19,865 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
-2017-12-03 00:39:20,165 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
-2017-12-03 00:39:20,341 INFO  0 score records have been added to database
-2017-12-03 00:39:21,763 ERROR Error while predicting.
-System.NotSupportedException: The specified type member 'Date' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MemberAccessTranslator.TypedTranslate(ExpressionConverter parent, MemberExpression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.FirstPredicateTranslatorBase.Translate(ExpressionConverter parent, MethodCallExpression call)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   w System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   w System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   w System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
-   w System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   w System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
-   w System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   w System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   w System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   w System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   w System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
-   w System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
-   w System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   w System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   w System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   w System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
-   w DataDownloader.MatchweekService.GetCurrentMatchweek() w E:\Projekty Visual Studio\FootballPredictor\DataDownloader\MatchweekService.cs:wiersz 16
-   w ConsoleAutoPredictor.Program.Main(String[] args) w E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\Program.cs:wiersz 69
-2017-12-03 00:41:47,254 INFO  Method GetLastExecutionDate is returning: 03.12.2017 00:34:01
-2017-12-03 00:41:47,558 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
-2017-12-03 00:41:47,770 INFO  0 score records have been added to database
-2017-12-03 00:41:49,283 INFO  Prediction will be run for matchweek 16 of season 2017/2018
-2017-12-03 00:41:51,234 INFO  Prediction finished successfully
-2017-12-03 00:41:51,246 INFO  Date 03.12.2017 00:41:51 has been set as last execution date to file: exec.data
-2017-12-03 00:41:51,260 INFO  Bye
+2017-12-03 22:10:03,336 INFO  Method GetLastExecutionDate is returning: 03.12.2017 22:02:35
+2017-12-03 22:10:03,353 INFO  Season short for date 12/03/2017 22:10:03 is: 1718
+2017-12-03 22:10:03,360 INFO  File CurrentScores.csv will be overwritten
+2017-12-03 22:10:03,522 INFO  Downloading csv file succeeded. File location is: 
+2017-12-03 22:10:03,526 INFO  Csv file has been saved as: E:\Projekty Visual Studio\FootballPredictor\ConsoleAutoPredictor\bin\Debug\CurrentScores.csv
+2017-12-03 22:10:03,560 INFO  0 scores have been parsed successfully. Scores after 12/03/2017 22:02:35 were being processed
+2017-12-03 22:10:03,701 INFO  0/0 scores inserted to database
+2017-12-03 22:10:03,706 INFO  0 score records have been added to database
+2017-12-03 22:10:04,474 INFO  Training scores set (before date: 12/03/2017 22:10:03) have been created successfully. Training scores count = 500
+2017-12-03 22:10:04,487 INFO  Scores dictionary created successfully. Dictionary count = 36
+2017-12-03 22:10:05,014 INFO  Training set loaded
+2017-12-03 22:10:05,023 INFO  Learning object created.
+2017-12-03 22:10:05,553 INFO  Learning completed.
+2017-12-03 22:10:05,584 INFO  Current matchweek is: 15
+2017-12-03 22:10:05,589 INFO  Prediction will be run for matchweek 16 of season 2017/2018
+2017-12-03 22:10:05,598 INFO  GetMatchesForMatchweek (season = 2017/2018, matchweek = 16) succeeded. 10 matches have been taken
+2017-12-03 22:10:05,813 INFO  Getting archive scores for team: West Ham before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:05,823 INFO  Getting archive scores for team: West Ham before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:05,840 INFO  Getting archive scores for team: Chelsea before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:05,849 INFO  Getting archive scores for team: Chelsea before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,112 INFO  Getting archive scores for team: Tottenham before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,122 INFO  Getting archive scores for team: Tottenham before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,131 INFO  Getting archive scores for team: Stoke before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,150 INFO  Getting archive scores for team: Stoke before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,304 INFO  Getting archive scores for team: Swansea before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,313 INFO  Getting archive scores for team: Swansea before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,322 INFO  Getting archive scores for team: West Brom before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,335 INFO  Getting archive scores for team: West Brom before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,636 INFO  Getting archive scores for team: Crystal Palace before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,661 INFO  Getting archive scores for team: Crystal Palace before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,695 INFO  Getting archive scores for team: Bournemouth before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,733 INFO  Getting archive scores for team: Bournemouth before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,925 INFO  Getting archive scores for team: Burnley before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,935 INFO  Getting archive scores for team: Burnley before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,948 INFO  Getting archive scores for team: Watford before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:06,958 INFO  Getting archive scores for team: Watford before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,013 INFO  Getting archive scores for team: Huddersfield before date: 12/09/2017 00:00:00 succeeded. 6 scores have been taken.
+2017-12-03 22:10:07,024 INFO  Getting archive scores for team: Huddersfield before date: 12/09/2017 00:00:00 succeeded. 6 scores have been taken.
+2017-12-03 22:10:07,034 INFO  Getting archive scores for team: Brighton before date: 12/09/2017 00:00:00 succeeded. 6 scores have been taken.
+2017-12-03 22:10:07,045 INFO  Getting archive scores for team: Brighton before date: 12/09/2017 00:00:00 succeeded. 6 scores have been taken.
+2017-12-03 22:10:07,262 INFO  Getting archive scores for team: Newcastle before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,273 INFO  Getting archive scores for team: Newcastle before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,285 INFO  Getting archive scores for team: Leicester before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,296 INFO  Getting archive scores for team: Leicester before date: 12/09/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,465 INFO  Getting archive scores for team: Southampton before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,478 INFO  Getting archive scores for team: Southampton before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,488 INFO  Getting archive scores for team: Arsenal before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,497 INFO  Getting archive scores for team: Arsenal before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,662 INFO  Getting archive scores for team: Liverpool before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,673 INFO  Getting archive scores for team: Liverpool before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,686 INFO  Getting archive scores for team: Everton before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,697 INFO  Getting archive scores for team: Everton before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,862 INFO  Getting archive scores for team: Man United before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,872 INFO  Getting archive scores for team: Man United before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,884 INFO  Getting archive scores for team: Man City before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,893 INFO  Getting archive scores for team: Man City before date: 12/10/2017 00:00:00 succeeded. 10 scores have been taken.
+2017-12-03 22:10:07,899 INFO  Prediction finished successfully
+2017-12-03 22:10:07,905 INFO  Date 12/03/2017 22:10:07 has been set as last execution date to file: exec.data
+2017-12-03 22:10:07,925 INFO  Bye

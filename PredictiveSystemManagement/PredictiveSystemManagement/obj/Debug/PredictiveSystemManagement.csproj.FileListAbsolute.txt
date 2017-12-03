@@ -135,3 +135,5 @@ C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.csproj.CoreCompileInputs.cache
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.exe
 C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_26_11\InzynierkaDesktopApp\PredictiveSystemManagement\PredictiveSystemManagement\obj\Debug\PredictiveSystemManagement.pdb
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\log4net.dll
+E:\Projekty Visual Studio\FootballPredictor\PredictiveSystemManagement\PredictiveSystemManagement\bin\Debug\log4net.xml

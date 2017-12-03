@@ -1,5 +1,6 @@
 ﻿using DataModel;
 using DataModel.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace DataDownloader.Prediction
 {
     public class RatioCalculator
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(RatioCalculator));
+
         public static readonly int MAX_ARCHIVE_SCORES_NO = 100;
         public static readonly int MAX_ARCHIVE_HOME_SCORES_NO = 10;
         public static readonly double OFFENSIVE_RATIO_DEFAULT = 1.2;
@@ -51,25 +54,34 @@ namespace DataDownloader.Prediction
 
         public Score SetRatio(Score score)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-                var scoreDb = ctx.Scores.SingleOrDefault(s => s.Id == score.Id);
-                var match = ctx.Matches.First(m => m.Id == scoreDb.MatchId);
-                var home = ctx.Teams.First(t => t.Id == match.HomeId).Name;
-                var away = ctx.Teams.First(t => t.Id == match.AwayId).Name;
+                using (var ctx = new FootballEntities())
+                {
+                    var scoreDb = ctx.Scores.SingleOrDefault(s => s.Id == score.Id);
+                    var match = ctx.Matches.First(m => m.Id == scoreDb.MatchId);
+                    var home = ctx.Teams.First(t => t.Id == match.HomeId).Name;
+                    var away = ctx.Teams.First(t => t.Id == match.AwayId).Name;
 
-                scoreDb.HOR = CalculateOffensiveRatio(GetArchiveScores(home, scoreDb.Date));
-                scoreDb.HDR = CalculateDefensiveRatio(GetArchiveScores(home, scoreDb.Date));
-                scoreDb.AOR = CalculateOffensiveRatio(GetArchiveScores(away, scoreDb.Date));
-                scoreDb.ADR = CalculateDefensiveRatio(GetArchiveScores(away, scoreDb.Date));
-                scoreDb.HORH = CalculateOffensiveRatio(GetArchiveScores(home, true, scoreDb.Date));
-                scoreDb.HDRH = CalculateDefensiveRatio(GetArchiveScores(home, true, scoreDb.Date));
-                scoreDb.AORA = CalculateOffensiveRatio(GetArchiveScores(away, false, scoreDb.Date));
-                scoreDb.ADRA = CalculateDefensiveRatio(GetArchiveScores(away, false, scoreDb.Date));
+                    scoreDb.HOR = CalculateOffensiveRatio(GetArchiveScores(home, scoreDb.Date));
+                    scoreDb.HDR = CalculateDefensiveRatio(GetArchiveScores(home, scoreDb.Date));
+                    scoreDb.AOR = CalculateOffensiveRatio(GetArchiveScores(away, scoreDb.Date));
+                    scoreDb.ADR = CalculateDefensiveRatio(GetArchiveScores(away, scoreDb.Date));
+                    scoreDb.HORH = CalculateOffensiveRatio(GetArchiveScores(home, true, scoreDb.Date));
+                    scoreDb.HDRH = CalculateDefensiveRatio(GetArchiveScores(home, true, scoreDb.Date));
+                    scoreDb.AORA = CalculateOffensiveRatio(GetArchiveScores(away, false, scoreDb.Date));
+                    scoreDb.ADRA = CalculateDefensiveRatio(GetArchiveScores(away, false, scoreDb.Date));
 
-                ctx.SaveChanges();
+                    ctx.SaveChanges();
 
-                return scoreDb;
+                    logger.InfoFormat("Ratio for teams: {0} and {1} on date: {2} set successfully", home, away, scoreDb.Date);
+                    return scoreDb;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error("Error while setting team ratio.", e);
+                return null;
             }
         }
 
@@ -100,7 +112,6 @@ namespace DataDownloader.Prediction
                 return ((GoalsSum + ShotsSum + OnTargetSum - OpponentRatio) / (WEIGHTS_SUM * scores.Count) + OFFENSIVE_RATIO_DEFAULT) / 2;
             else
                 return OFFENSIVE_RATIO_DEFAULT;
-
         }
 
         public double CalculateDefensiveRatio(IDictionary<Score, bool> scores)
@@ -138,74 +149,93 @@ namespace DataDownloader.Prediction
 
         public IDictionary<Score, bool> GetArchiveScores(string teamName, DateTime date)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-                int teamId = ctx.Teams.First(t => t.Name == teamName).Id;
-
-                var scores = ctx.Scores
-                    .Where(s => s.Date < date
-                        && (s.Match.HomeId == teamId || s.Match.AwayId == teamId))
-                    .OrderByDescending(d => d.Date)
-                    .Take(MAX_ARCHIVE_SCORES_NO);
-
-                var dict = new Dictionary<Score, bool>();
-
-                foreach (var s in scores)
+                using (var ctx = new FootballEntities())
                 {
-                    if (s.Match.HomeId == teamId)
+                    int teamId = ctx.Teams.First(t => t.Name == teamName).Id;
+
+                    var scores = ctx.Scores
+                        .Where(s => s.Date < date
+                            && (s.Match.HomeId == teamId || s.Match.AwayId == teamId))
+                        .OrderByDescending(d => d.Date)
+                        .Take(MAX_ARCHIVE_SCORES_NO);
+
+                    var dict = new Dictionary<Score, bool>();
+
+                    foreach (var s in scores)
                     {
-                        dict.Add(s, true);
+                        if (s.Match.HomeId == teamId)
+                        {
+                            dict.Add(s, true);
+                        }
+                        else
+                        {
+                            dict.Add(s, false);
+                        }
                     }
-                    else
-                    {
-                        dict.Add(s, false);
-                    }
+                    return dict;
                 }
-                return dict;
+            }
+            catch (Exception e)
+            {
+                logger.Error("Error while getting archive scores.", e);
+                return null;
             }
         }
 
         public IDictionary<Score, bool> GetArchiveScores(string teamName)
         {
-            return GetArchiveScores(teamName, DateTime.Now);
+            var dict = GetArchiveScores(teamName, DateTime.Now);
+            logger.InfoFormat("Getting archive scores for team: {0} succeeded. {1} scores have been taken", teamName, dict.Count);
+            return dict;
         }
 
         public IDictionary<Score, bool> GetArchiveScores(string teamName, bool isHome, DateTime date)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-                int teamId = ctx.Teams.First(t => t.Name == teamName).Id;
-                var dict = new Dictionary<Score, bool>();
-
-                if (isHome)
+                using (var ctx = new FootballEntities())
                 {
-                    var match = ctx.Matches.First(m => m.HomeId == teamId);
+                    int teamId = ctx.Teams.First(t => t.Name == teamName).Id;
+                    var dict = new Dictionary<Score, bool>();
 
-                    var scores = ctx.Scores
-                        .Where(s => s.Date < date && s.Match.HomeId == teamId)
-                        .OrderByDescending(d => d.Date)
-                        .Take(MAX_ARCHIVE_HOME_SCORES_NO);
-
-                    foreach (var s in scores)
+                    if (isHome)
                     {
-                        dict.Add(s, true);
+                        var match = ctx.Matches.First(m => m.HomeId == teamId);
+
+                        var scores = ctx.Scores
+                            .Where(s => s.Date < date && s.Match.HomeId == teamId)
+                            .OrderByDescending(d => d.Date)
+                            .Take(MAX_ARCHIVE_HOME_SCORES_NO);
+
+                        foreach (var s in scores)
+                        {
+                            dict.Add(s, true);
+                        }
                     }
-                }
-                else
-                {
-                    var match = ctx.Matches.First(m => m.AwayId == teamId);
-
-                    var scores = ctx.Scores
-                        .Where(s => s.Date < date && s.Match.AwayId == teamId)
-                        .OrderByDescending(d => d.Date)
-                        .Take(MAX_ARCHIVE_HOME_SCORES_NO);
-
-                    foreach (var s in scores)
+                    else
                     {
-                        dict.Add(s, false);
+                        var match = ctx.Matches.First(m => m.AwayId == teamId);
+
+                        var scores = ctx.Scores
+                            .Where(s => s.Date < date && s.Match.AwayId == teamId)
+                            .OrderByDescending(d => d.Date)
+                            .Take(MAX_ARCHIVE_HOME_SCORES_NO);
+
+                        foreach (var s in scores)
+                        {
+                            dict.Add(s, false);
+                        }
                     }
+                    logger.InfoFormat("Getting archive scores for team: {0} before date: {1} succeeded. {2} scores have been taken.", teamName, date, dict.Count);
+                    return dict;
                 }
-                return dict;
+            }
+            catch (Exception e)
+            {
+                logger.Error(string.Format("Getting archive scores for team: {0}  before date: {1} failed due to exception.", teamName, date), e);
+                return null;
             }
         }
 
@@ -216,65 +246,81 @@ namespace DataDownloader.Prediction
 
         public double GetTeamRatio(int teamId, DateTime date, bool isOffensive)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-
-                var match = ctx.Matches.Where(m => m.Date < date && (m.HomeId == teamId || m.AwayId == teamId))
-                    .OrderByDescending(d => d.Date)
-                    .FirstOrDefault();
-
-                if (match == null)
+                using (var ctx = new FootballEntities())
                 {
+
+                    var match = ctx.Matches.Where(m => m.Date < date && (m.HomeId == teamId || m.AwayId == teamId))
+                        .OrderByDescending(d => d.Date)
+                        .FirstOrDefault();
+
+                    if (match == null)
+                    {
+                        if (isOffensive)
+                            return DEFENSIVE_RATIO_DEFAULT;
+                        else
+                            return OFFENSIVE_RATIO_DEFAULT;
+                    }
+
+
+                    var score = ctx.Scores.FirstOrDefault(s => s.MatchId == match.Id);
+
+                    if (score.HDR == null)
+                        return 0.0;
+
                     if (isOffensive)
-                        return DEFENSIVE_RATIO_DEFAULT;
-                    else
-                        return OFFENSIVE_RATIO_DEFAULT;
-                }
-
-
-                var score = ctx.Scores.FirstOrDefault(s => s.MatchId == match.Id);
-
-                if (score.HDR == null)
-                    return 0.0;
-
-                if (isOffensive)
-                {
-                    if (match.HomeId == teamId)
                     {
-                        return (double)score.ADR;
+                        if (match.HomeId == teamId)
+                        {
+                            return (double)score.ADR;
+                        }
+                        else
+                        {
+                            return (double)score.HDR;
+                        }
                     }
                     else
                     {
-                        return (double)score.HDR;
+                        if (match.HomeId == teamId)
+                        {
+                            return (double)score.AOR;
+                        }
+                        else
+                        {
+                            return (double)score.HOR;
+                        }
                     }
                 }
-                else
-                {
-                    if (match.HomeId == teamId)
-                    {
-                        return (double)score.AOR;
-                    }
-                    else
-                    {
-                        return (double)score.HOR;
-                    }
-                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(string.Format("Getting ratio for teamId: {0}, date: {1}, isOffesnive: {2} failed due to exception.", teamId, date, isOffensive));
+                return OFFENSIVE_RATIO_DEFAULT;
             }
         }
 
         public int GetTeamIdFromScore(Score s, bool isHome)
         {
-            using (var ctx = new FootballEntities())
+            try
             {
-                var match = ctx.Matches.FirstOrDefault(m => m.Id == s.MatchId);
-                if (isHome)
+                using (var ctx = new FootballEntities())
                 {
-                    return match.HomeId;
+                    var match = ctx.Matches.FirstOrDefault(m => m.Id == s.MatchId);
+                    if (isHome)
+                    {
+                        return match.HomeId;
+                    }
+                    else
+                    {
+                        return match.AwayId;
+                    }
                 }
-                else
-                {
-                    return match.AwayId;
-                }
+            }
+            catch (Exception e)
+            {
+                logger.Error("Getting team id from score failed due to exception.", e);
+                return -1;
             }
         }
     }

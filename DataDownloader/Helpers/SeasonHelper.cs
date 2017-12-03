@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,11 @@ namespace DataDownloader
 {
     public static class SeasonHelper
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(SeasonHelper));
+
         public static string GetCurrentSeason(DateTime date)
         {
+
             StringBuilder currentSeason = new StringBuilder();
 
             // Example: match on 23 October 2012 = season "2012/2013"
@@ -25,7 +29,9 @@ namespace DataDownloader
                 currentSeason.Append('/');
                 currentSeason.Append(date.Year);
             }
-            return currentSeason.ToString();
+
+            string res = currentSeason.ToString();
+            return res;
         }
 
         public static string GetCurrentSeasonShort(DateTime date)
@@ -43,14 +49,17 @@ namespace DataDownloader
                 currentSeason.Append((date.Year - 1) % 100);
                 currentSeason.Append(date.Year % 100);
             }
+
+            string res = currentSeason.ToString();
+            logger.InfoFormat("Season short for date {0} is: {1}", date, res);
             return currentSeason.ToString();
         }
 
         public static string GetNextSeason(string season)
         {
-            int first = int.Parse(season.Substring(0,4)) + 1;
+            int first = int.Parse(season.Substring(0, 4)) + 1;
             int second = int.Parse(season.Substring(5, 4)) + 1;
-
+            
             return first + "/" + second;
         }
 

@@ -24,7 +24,7 @@ namespace ConsoleAutoPredictor
             {
                 var d = DateTime.Now;
                 sw.Write(d);
-                logger.Info(string.Format("Date {0} has been set as last execution date to file: {1}", d, FILENAME));
+                logger.InfoFormat("Date {0} has been set as last execution date to file: {1}", d, FILENAME);
             }
         }
 

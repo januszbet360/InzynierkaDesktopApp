@@ -87,13 +87,13 @@
     <Compile Include="TeamDataServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataDownloader\DataDownloader.csproj">
+    <ProjectReference Include="..\DataDownloader\FootballPredictor.BLL.csproj">
       <Project>{49340B31-0333-48EC-BF6D-E8185B631C6F}</Project>
-      <Name>DataDownloader</Name>
+      <Name>FootballPredictor.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataModel\DataModel.csproj">
+    <ProjectReference Include="..\DataModel\FootballPredictor.Model.csproj">
       <Project>{BB674293-0DBA-4E28-B90E-67923C6EA79D}</Project>
-      <Name>DataModel</Name>
+      <Name>FootballPredictor.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

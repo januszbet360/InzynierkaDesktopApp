@@ -1,5 +1,6 @@
 ﻿using DataModel;
 using DataModel.Models;
+using log4net;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace DataDownloader
 {
     public class ApiService
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(ApiService));
+
         private ApiDownloader _api = new ApiDownloader();
 
         public List<MatchModel> GetAllMatches()
@@ -29,19 +32,29 @@ namespace DataDownloader
 
         public List<MatchModel> ParseJsonMatches(JObject o)
         {
+
             var matches = new List<MatchModel>();
 
             var jsonMatches = o["fixtures"].Children();
             foreach (var m in jsonMatches)
             {
-                var match = new MatchModel();
-                match.Date = (DateTime)m["date"];
-                match.HomeTeam = (String)m["homeTeamName"];
-                match.AwayTeam = (String)m["awayTeamName"];
-                match.Season = SeasonHelper.GetCurrentSeason(match.Date);
-                match.Matchweek = (int)m["matchday"];
-                matches.Add(match);
+                try
+                {
+                    var match = new MatchModel();
+                    match.Date = (DateTime)m["date"];
+                    match.HomeTeam = (String)m["homeTeamName"];
+                    match.AwayTeam = (String)m["awayTeamName"];
+                    match.Season = SeasonHelper.GetCurrentSeason(match.Date);
+                    match.Matchweek = (int)m["matchday"];
+                    matches.Add(match);
+                    logger.InfoFormat("Match: {0} - {1}, date: {2} parsed successfully", match.HomeTeam, match.AwayTeam, match.Date);
+                }
+                catch (Exception e)
+                {
+                    logger.Error("Error while parsing match", e);
+                }
             }
+            logger.InfoFormat("{0}/{1} matches parsed successfully", matches.Count, jsonMatches.ToList().Count);
             return matches;
         }
 
@@ -71,9 +84,10 @@ namespace DataDownloader
                         {
                             var hID = ctx.Teams.FirstOrDefault(t => t.FullName == match.HomeTeam).Id;
                             var aID = ctx.Teams.FirstOrDefault(t => t.FullName == match.AwayTeam).Id;
-                            
+
                             if (ctx.Matches.Any(m => m.HomeId == hID && m.AwayId == aID && m.Season == match.Season))
                             {
+                                logger.InfoFormat("Match {0} - {1} from season {2} already exists", match.HomeTeam, match.AwayTeam, match.Season);
                                 continue;
                             }
                             else
@@ -84,11 +98,13 @@ namespace DataDownloader
                         }
 
                         ctx.SaveChanges();
+                        logger.InfoFormat("{0}/{1} matches inserted to database", counter, matches.Count);
                         transaction.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         transaction.Rollback();
+                        logger.Error("Error while inserting. Transaction rollback.", e);
                     }
                 }
             }

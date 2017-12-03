@@ -5,9 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballPredictor.Tests", "FootballPredictor.Tests\FootballPredictor.Tests.csproj", "{FB73B501-FDDD-40AD-8AA5-76913BBD6CFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDownloader", "DataDownloader\DataDownloader.csproj", "{49340B31-0333-48EC-BF6D-E8185B631C6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballPredictor.BLL", "DataDownloader\FootballPredictor.BLL.csproj", "{49340B31-0333-48EC-BF6D-E8185B631C6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{BB674293-0DBA-4E28-B90E-67923C6EA79D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballPredictor.Model", "DataModel\FootballPredictor.Model.csproj", "{BB674293-0DBA-4E28-B90E-67923C6EA79D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PredictiveSystemManagement", "PredictiveSystemManagement\PredictiveSystemManagement\PredictiveSystemManagement.csproj", "{6846B7A9-0F4C-4753-907E-1DC67728F7BC}"
 EndProject

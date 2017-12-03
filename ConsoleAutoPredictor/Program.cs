@@ -66,7 +66,7 @@ namespace ConsoleAutoPredictor
                 Console.WriteLine("\nPredicting scores started...");
                 var p = new Predictor();
                 string season = SeasonHelper.GetCurrentSeason(DateTime.Now);
-                int matchweek = MatchweekService.GetCurrentMatchweek();
+                int matchweek = MatchweekHelper.GetCurrentMatchweek();
 
                 if (matchweek == 0 || matchweek == 38)
                 {
@@ -78,7 +78,7 @@ namespace ConsoleAutoPredictor
                     matchweek++;
                 }
 
-                logger.Info(string.Format("Prediction will be run for matchweek {0} of season {1}", matchweek, season));
+                logger.InfoFormat("Prediction will be run for matchweek {0} of season {1}", matchweek, season);
                 List<Match> sc = p.Predict(season, matchweek);
                 logger.Info("Prediction finished successfully");
                 Console.WriteLine("Predicting process succeeded.");

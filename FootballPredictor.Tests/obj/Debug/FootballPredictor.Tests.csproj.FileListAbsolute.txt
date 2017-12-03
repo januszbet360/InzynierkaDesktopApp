@@ -44,3 +44,5 @@ E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Ac
 E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.xml
 E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.Math.xml
 E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\Accord.Math.Core.xml
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\log4net.dll
+E:\Projekty Visual Studio\FootballPredictor\FootballPredictor.Tests\bin\Debug\log4net.xml

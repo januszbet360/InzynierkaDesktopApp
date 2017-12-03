@@ -102,13 +102,13 @@
     <None Include="InternatData\Images\Stadium.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DataDownloader\DataDownloader.csproj">
+    <ProjectReference Include="..\..\DataDownloader\FootballPredictor.BLL.csproj">
       <Project>{49340b31-0333-48ec-bf6d-e8185b631c6f}</Project>
-      <Name>DataDownloader</Name>
+      <Name>FootballPredictor.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DataModel\DataModel.csproj">
+    <ProjectReference Include="..\..\DataModel\FootballPredictor.Model.csproj">
       <Project>{bb674293-0dba-4e28-b90e-67923c6ea79d}</Project>
-      <Name>DataModel</Name>
+      <Name>FootballPredictor.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

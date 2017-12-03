@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using log4net;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace DataDownloader
 {
     public class ApiDownloader
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(ApiDownloader));
+
         public readonly int LEAGUE_ID;
 
         public ApiDownloader()
@@ -25,8 +28,10 @@ namespace DataDownloader
 
             if (resp.IsSuccessStatusCode)
             {
+                logger.Info("Fixture downloaded successfully. Status code - " + resp.StatusCode);
                 return resp.Content.ReadAsStringAsync().Result;
             }
+            logger.Error("Fixture failed to download. Status code - " + resp.StatusCode);
             return null;
         }
 
@@ -38,8 +43,10 @@ namespace DataDownloader
 
             if (resp.IsSuccessStatusCode)
             {
+                logger.Info("League table downloaded successfully. Status code - " + resp.StatusCode);
                 return resp.Content.ReadAsStringAsync().Result;
             }
+            logger.Error("League table failed to download. Status code - " + resp.StatusCode);
             return null;
         }
 
@@ -50,16 +57,21 @@ namespace DataDownloader
 
             if (resp.IsSuccessStatusCode)
             {
+                logger.Info("League info downloaded successfully - " + resp.StatusCode);
+
                 var json = resp.Content.ReadAsStringAsync().Result;
                 JArray competitions = JArray.Parse(json);
                 foreach (var c in competitions.Children())
                 {
                     if ((string)c["league"] == "PL")
                     {
-                        return (int)c["id"];
+                        int id = (int)c["id"];
+                        logger.Info("Premier League API id is: " + id);
+                        return id;
                     }
                 }
             }
+            logger.Error("Error occured while getting league id. Probably league was not found");
             return -1;            
         }
 
@@ -70,8 +82,10 @@ namespace DataDownloader
 
             if (resp.IsSuccessStatusCode)
             {
+                logger.Info("All fixtures downloaded successfully. Status code - " + resp.StatusCode);
                 return resp.Content.ReadAsStringAsync().Result;
             }
+            logger.Error("Error while downloading fixtures. Status code: " + resp.StatusCode);
             return null;
         }
     }

@@ -65,13 +65,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataDownloader\DataDownloader.csproj">
+    <ProjectReference Include="..\DataDownloader\FootballPredictor.BLL.csproj">
       <Project>{49340B31-0333-48EC-BF6D-E8185B631C6F}</Project>
-      <Name>DataDownloader</Name>
+      <Name>FootballPredictor.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataModel\DataModel.csproj">
+    <ProjectReference Include="..\DataModel\FootballPredictor.Model.csproj">
       <Project>{bb674293-0dba-4e28-b90e-67923c6ea79d}</Project>
-      <Name>DataModel</Name>
+      <Name>FootballPredictor.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,11 @@
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\DataModel.dll.config
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\DataModel.dll
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\DataModel.pdb
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\EntityFramework.dll
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\log4net.dll
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\EntityFramework.xml
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projekty Visual Studio\FootballPredictor\DataModel\bin\Debug\log4net.xml
+E:\Projekty Visual Studio\FootballPredictor\DataModel\obj\Debug\DataModel.dll
+E:\Projekty Visual Studio\FootballPredictor\DataModel\obj\Debug\DataModel.pdb

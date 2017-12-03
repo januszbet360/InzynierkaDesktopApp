@@ -1,4 +1,5 @@
 ﻿using DataModel;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace DataDownloader
 {
     public class ScoreEffectivenessService
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(ScoreEffectivenessService));
+
         public const double WINNER_RATIO = 0.0;
         public const double EXACT_SCORE_RATIO = 1 - WINNER_RATIO;
 
@@ -20,7 +23,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.ToList();
-                return Compute(matches, false);
+                double res =  Compute(matches, false);
+                logger.InfoFormat("Prediction effectiveness of all scores equals: {0}", res);
+                return res;
             }
         }
 
@@ -30,7 +35,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.Where(m => m.Date < before).ToList();
-                return Compute(matches, false);
+                double res = Compute(matches, false);
+                logger.InfoFormat("Prediction effectiveness of scores before {0} equals: {1}", before, res);
+                return res;
             }
         }
 
@@ -40,7 +47,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.Where(m => m.Season == season).ToList();
-                return Compute(matches, false);
+                double res = Compute(matches, false);
+                logger.InfoFormat("Prediction effectiveness of scores in season {0} equals: {1}", season, res);
+                return res;
             }
         }
 
@@ -50,7 +59,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.Where(m => m.Season == season && m.Matchweek == matchweek).ToList();
-                return Compute(matches, false);
+                double res = Compute(matches, false);
+                logger.InfoFormat("Prediction effectiveness of scores in matchweek {0} of season {1} equals: {2}", matchweek, season, res);
+                return res;
             }
         }
 
@@ -64,7 +75,9 @@ namespace DataDownloader
                     .Where(m => m.Season == lastMatch.Season && m.Matchweek + n >= lastMatch.Matchweek)
                     .ToList();
 
-                return Compute(matches, false);
+                double res = Compute(matches, false);
+                logger.InfoFormat("Prediction effectiveness of last {0} matchweeks equals: {1}", n, res);
+                return res;
             }
         }
 
@@ -74,7 +87,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.ToList();
-                return Compute(matches, true);
+                double res = Compute(matches, true);
+                logger.InfoFormat("Prediction weighted effectiveness of all scores equals: {0}", res);
+                return res;
             }
         }
         
@@ -84,7 +99,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.Where(m => m.Date < before).ToList();
-                return Compute(matches, true);
+                double res = Compute(matches, true);
+                logger.InfoFormat("Prediction weighted effectiveness of scores before {0} equals: {1}", before, res);
+                return res;
             }
         }
 
@@ -94,7 +111,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.Where(m => m.Season == season).ToList();
-                return Compute(matches, true);
+                double res = Compute(matches, true);
+                logger.InfoFormat("Prediction weighted effectiveness of scores in season {0} equals: {1}", season, res);
+                return res;
             }
         }
         
@@ -104,7 +123,9 @@ namespace DataDownloader
             using (var ctx = new FootballEntities())
             {
                 var matches = ctx.Matches.Where(m => m.Season == season && m.Matchweek == matchweek).ToList();
-                return Compute(matches, true);
+                double res = Compute(matches, true);
+                logger.InfoFormat("Prediction weighted effectiveness of scores in {0} matchweek of season {1} equals: {2}", matchweek, season, res);
+                return res;
             }
         }
 
@@ -118,7 +139,9 @@ namespace DataDownloader
                     .Where(m => m.Season == lastMatch.Season && m.Matchweek + n >= lastMatch.Matchweek)
                     .ToList();
 
-                return Compute(matches, true);
+                double res = Compute(matches, true);
+                logger.InfoFormat("Prediction weighted effectiveness of last {0} matchweeks equals: {1}", n, res);
+                return res;
             }
         }
 
@@ -127,50 +150,59 @@ namespace DataDownloader
         {
             using (var ctx = new FootballEntities())
             {
-                int matchesNo = 0;
-                double effective = 0.0;
-
-                foreach (var m in matches)
+                try
                 {
-                    var score = ctx.Scores.FirstOrDefault(s => s.MatchId == m.Id);
+                    int matchesNo = 0;
+                    double effective = 0.0;
 
-                    if (score != null)
+                    foreach (var m in matches)
                     {
-                        var pHome = m.HomeGoalsPredicted;
-                        var pAway = m.AwayGoalsPredicted;
-                        var rHome = score.HomeGoals;
-                        var rAway = score.AwayGoals;
+                        var score = ctx.Scores.FirstOrDefault(s => s.MatchId == m.Id);
 
-                        if (pHome != null && pAway != null)
+                        if (score != null)
                         {
-                            matchesNo++;
+                            var pHome = m.HomeGoalsPredicted;
+                            var pAway = m.AwayGoalsPredicted;
+                            var rHome = score.HomeGoals;
+                            var rAway = score.AwayGoals;
 
-                            if (GetWinner((int)pHome, (int)pAway) == GetWinner(rHome, rAway))
+                            if (pHome != null && pAway != null)
                             {
-                                if (isWeighted)
+                                matchesNo++;
+
+                                if (GetWinner((int)pHome, (int)pAway) == GetWinner(rHome, rAway))
                                 {
-                                    effective += WINNER_RATIO;
-                                    if ((int)pHome == rHome && (int)pAway == rAway)
+                                    if (isWeighted)
                                     {
-                                        effective += EXACT_SCORE_RATIO;
+                                        effective += WINNER_RATIO;
+                                        if ((int)pHome == rHome && (int)pAway == rAway)
+                                        {
+                                            effective += EXACT_SCORE_RATIO;
+                                        }
                                     }
-                                }
-                                else
-                                {
-                                    effective += 1.0;
+                                    else
+                                    {
+                                        effective += 1.0;
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                if (matchesNo == 0)
-                {
-                    return 0.0;
+                    if (matchesNo == 0)
+                    {
+                        logger.Warn("Matches count = 0. No effectiveness could be computed");
+                        return 0.0;
+                    }
+                    else
+                    {
+                        return effective / (double)matchesNo;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    return effective / (double)matchesNo;
+                    logger.Error("Error while computing prediction effectiveness.", e);
+                    return -1.0;
                 }
             }
         }

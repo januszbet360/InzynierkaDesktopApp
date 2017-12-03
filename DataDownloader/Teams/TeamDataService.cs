@@ -1,5 +1,6 @@
 ﻿using DataModel;
 using DataModel.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,8 @@ namespace DataDownloader
 {
     public class TeamDataService
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(TeamDataService));
+
         public List<Team> GetTeamsFromFile()
         {
             var teams = new List<Team>();
@@ -28,9 +31,11 @@ namespace DataDownloader
                     team.ImageURL = info[2];
                     teams.Add(team);
                 }
+                logger.InfoFormat("GetTeamsFromFile returned {0} teams", teams.Count);
             }
             catch(Exception ex)
             {
+                logger.Error("GetTeamsFromFile() failed due to exception.", ex);
                 Console.WriteLine("[Error] DataDownloader::GetTeamsFromFile() - FAILED\n" + ex.ToString());
             }
             return teams;
@@ -59,11 +64,13 @@ namespace DataDownloader
                             }
                             else
                             {
+                                logger.Warn("Teams have been already inserted. Transaction rollback.");
                                 transaction.Rollback();
                             }
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
+                            logger.Error("Inserting teams failed due to exception. Transaction rollback.", e);
                             transaction.Rollback();
                         }
                     }

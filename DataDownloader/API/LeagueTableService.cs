@@ -1,4 +1,5 @@
 ﻿using DataModel.Models;
+using log4net;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace DataDownloader
 {
     public class LeagueTableService
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(LeagueTableService));
+
         private ApiDownloader _api = new ApiDownloader();
 
         public List<LeagueTableTeamModel> GetMatches(int matchday)
@@ -35,6 +38,8 @@ namespace DataDownloader
                 team.ImageUrl = (String)t["crestURI"];
                 table.Add(team);
             }
+
+            logger.InfoFormat("{0}/20 teams league table info downloaded successfully");
             return table;
         }
     }

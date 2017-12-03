@@ -16,7 +16,7 @@ namespace FootballPredictor.Tests.Prediction
         {
             Predictor _pred = new Predictor();
 
-            var res = _pred.Predict("2017/2018", 12);
+            var res = _pred.Predict("2017/2018", 15);
             //var res2 = _pred.Predict("2017/2018", 2);
             Assert.IsTrue(res.Count > 0);
             Assert.IsNotNull(res[0]);

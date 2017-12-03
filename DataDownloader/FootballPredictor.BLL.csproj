@@ -86,28 +86,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiDownloader.cs" />
-    <Compile Include="ApiHost.cs" />
+    <Compile Include="API\ApiDownloader.cs" />
+    <Compile Include="API\ApiHost.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="CsvDownloader.cs" />
-    <Compile Include="LeagueTableService.cs" />
-    <Compile Include="ApiService.cs" />
-    <Compile Include="MatchweekService.cs" />
+    <Compile Include="CSV\CsvDownloader.cs" />
+    <Compile Include="API\LeagueTableService.cs" />
+    <Compile Include="API\ApiService.cs" />
+    <Compile Include="Helpers\MatchweekHelper.cs" />
     <Compile Include="Prediction\PredictingMachine.cs" />
     <Compile Include="Prediction\Predictor.cs" />
     <Compile Include="Prediction\RatioCalculator.cs" />
-    <Compile Include="Prediction\ScoresPredictor.cs" />
     <Compile Include="Prediction\TrainingSetCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CsvService.cs" />
+    <Compile Include="CSV\CsvService.cs" />
     <Compile Include="Prediction\ScoreEffectivenessService.cs" />
-    <Compile Include="SeasonHelper.cs" />
-    <Compile Include="TeamDataService.cs" />
+    <Compile Include="Helpers\SeasonHelper.cs" />
+    <Compile Include="Teams\TeamDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataModel\DataModel.csproj">
+    <ProjectReference Include="..\DataModel\FootballPredictor.Model.csproj">
       <Project>{BB674293-0DBA-4E28-B90E-67923C6EA79D}</Project>
-      <Name>DataModel</Name>
+      <Name>FootballPredictor.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +114,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="teams.txt" />
+    <Content Include="Teams\teams.txt" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
