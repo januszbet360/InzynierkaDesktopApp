@@ -28,3 +28,34 @@ E:\Projekty Visual Studio\FootballPredictor\DataDownloader\bin\Debug\Newtonsoft.
 E:\Projekty Visual Studio\FootballPredictor\DataDownloader\obj\Debug\FootballPredictor.BLL.csprojResolveAssemblyReference.cache
 E:\Projekty Visual Studio\FootballPredictor\DataDownloader\obj\Debug\DataDownloader.dll
 E:\Projekty Visual Studio\FootballPredictor\DataDownloader\obj\Debug\DataDownloader.pdb
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.dll.config
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\DataDownloader.dll.config
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\DataDownloader.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\DataDownloader.pdb
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.MachineLearning.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.Math.Core.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.Math.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.Statistics.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\CsvHelper.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\DataModel.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\EntityFramework.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\log4net.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\DataModel.pdb
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\DataModel.dll.config
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.MachineLearning.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.Math.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.Math.Core.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Accord.Statistics.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\CsvHelper.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\EntityFramework.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\log4net.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\obj\Debug\FootballPredictor.BLL.csprojResolveAssemblyReference.cache
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\obj\Debug\FootballPredictor.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.dll
+C:\Users\Mikołaj\Documents\GitHub\PredictiveSystemManagement_07_12\InzynierkaDesktopApp\DataDownloader\obj\Debug\DataDownloader.pdb

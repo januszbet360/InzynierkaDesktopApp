@@ -62,7 +62,7 @@ namespace PredictiveSystemManagement
 
                                 if (currentMatchweekEffectiveness == 0.0)
                                 {
-                                    textOfReport += String.Format("\n\t\t- kolejka {0}: - -", currentMachweek);
+                                    textOfReport += String.Format("\n\t\t- kolejka {0}: -", currentMachweek);
                                 }
                                 else
                                 {
@@ -87,7 +87,7 @@ namespace PredictiveSystemManagement
 
                 textOfReport += "\n\n" + separateLine +
                 "\n" +
-                String.Format("\n\t Ogólna skuteczność systemu predykcji: {0}%", Math.Round(new DataDownloader.ScoreEffectivenessService().Compute() * 100.0, 4)) +
+                String.Format("\n\t Ogólna skuteczność systemu predykcji: {0}% ({1}%)", Math.Round(new DataDownloader.ScoreEffectivenessService().Compute() * 100.0, 4), Math.Round(new DataDownloader.ScoreEffectivenessService().ComputeWeighted() * 100.0, 2)) +
                 String.Format("\n\t Najlepsza skuteczność predykcji wystąpiła w sezonie {0}: {1}%", bestSeason, Math.Round(bestEffectiveness, 2)) +
                 "\n" +
                 "\n" + separateLine +

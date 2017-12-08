@@ -154,7 +154,8 @@ namespace PredictiveSystemManagement
         {
             try
             {
-                int currentMatchweek = MatchweekHelper.GetCurrentMatchweek();
+                // Current Effectiveness = effectiveness of completed matchweek
+                int currentMatchweek = MatchweekHelper.GetCurrentMatchweek() - 1;
                 double currentEffectiveness = new ScoreEffectivenessService().Compute(currentMatchweek, SeasonHelper.GetCurrentSeason(DateTime.Now)) * 100;
 
                 double previouslyEffectiveness = currentEffectiveness;

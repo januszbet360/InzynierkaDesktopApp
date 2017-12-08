@@ -67,7 +67,7 @@ namespace PredictiveSystemManagement
             // 
             // HistoricalDataPanel
             // 
-            this.HistoricalDataPanel.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.HistoricalDataPanel.BackColor = System.Drawing.Color.DimGray;
             this.HistoricalDataPanel.Controls.Add(this.HistoricalDataGroupBox);
             this.HistoricalDataPanel.Location = new System.Drawing.Point(0, 150);
             this.HistoricalDataPanel.Name = "HistoricalDataPanel";
@@ -154,7 +154,7 @@ namespace PredictiveSystemManagement
             // 
             // ManagementSystemPanel
             // 
-            this.ManagementSystemPanel.BackColor = System.Drawing.Color.YellowGreen;
+            this.ManagementSystemPanel.BackColor = System.Drawing.Color.Gray;
             this.ManagementSystemPanel.Controls.Add(this.ManagementSystemGroupBox);
             this.ManagementSystemPanel.Location = new System.Drawing.Point(300, 150);
             this.ManagementSystemPanel.Name = "ManagementSystemPanel";
@@ -215,7 +215,7 @@ namespace PredictiveSystemManagement
             // SystemEfficiencyLabel
             // 
             this.SystemEfficiencyLabel.AutoSize = true;
-            this.SystemEfficiencyLabel.BackColor = System.Drawing.Color.YellowGreen;
+            this.SystemEfficiencyLabel.BackColor = System.Drawing.Color.DimGray;
             this.SystemEfficiencyLabel.Font = new System.Drawing.Font("Tekton Pro Ext", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SystemEfficiencyLabel.Location = new System.Drawing.Point(84, 82);
             this.SystemEfficiencyLabel.Name = "SystemEfficiencyLabel";
@@ -246,7 +246,7 @@ namespace PredictiveSystemManagement
             // 
             // LogoPictureBox
             // 
-            this.LogoPictureBox.BackColor = System.Drawing.Color.DimGray;
+            this.LogoPictureBox.BackColor = System.Drawing.Color.Black;
             this.LogoPictureBox.Image = global::PredictiveSystemManagement.Properties.Resources.prescores_logo;
             this.LogoPictureBox.Location = new System.Drawing.Point(0, 0);
             this.LogoPictureBox.Name = "LogoPictureBox";
